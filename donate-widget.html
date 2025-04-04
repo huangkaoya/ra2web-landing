@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="css/media.css" type="text/css" />
+    <script src="js/qrcode.min.js"></script>
+    <script defer src="js/alpine3.14.5.min.js"></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        #qr-title {
+            font-size: 1.5em;
+            margin-bottom: 16px;
+        }
+
+        #qr-code {
+            max-height: 50%;
+        }
+
+        #qr-code img {
+            margin: 0 auto;
+            height: 100%;
+            max-height: 256px;
+        }
+
+        #address {
+            margin: 20px;
+            font-size: 1.5em;
+            word-break: break-all;
+        }
+
+        .copy-address {
+            appearance: none;
+            background: #ff9000;
+            border: solid 1px #ff9000;
+            color: #fff;
+            padding: 11px 16px;
+            font-size: 14px;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .copy-address:hover {
+            border-color: #fda93c;
+            background: #fda93c;
+        }
+
+        @media only screen and (max-width: 479px) {
+            #qr-code {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body x-data="{
+    cryptoDict: {
+        'doge': '狗狗币',
+        'eth': '以太坊',
+        'btc': '比特币'
+    },
+    address: 'Loading...',
+    buttonText: 'Copy Address',
+    currentCurrencyType: 'doge',
+    async init() {
+        console.log('初始化');
+        const params = new URLSearchParams(location.search);
+        const currency = params.get('currency') || 'doge';
+        this.currentCurrencyType = currency;
+        console.log('获取加密货币类型', currency);
+        if (!currency) return;
+        
+        try {
+            const response = await fetch('crypto-recipients.json');
+            const addresses = await response.json();
+            this.address = addresses[currency];
+            if (this.address) {
+                this.$nextTick(() => {
+                    new QRCode(document.getElementById('qr-code'), this.address);
+                });
+            }
+        } catch (e) {
+            console.error(e);
+            this.address = 'Network Error!';
+        }
+    },
+    copyAddress() {
+        navigator.clipboard.writeText(this.address);
+        this.buttonText = 'Address copied!';
+        setTimeout(() => {
+            this.buttonText = 'Copy Address';
+        }, 3000);
+    }
+}">
+    <div id="qr-title" x-text="`${cryptoDict[currentCurrencyType]}地址，请仔细核对`"></div>
+    <div id="qr-code"></div>
+    <div id="address" x-text="address"></div>
+    <template x-if="address !== 'Loading...' && address !== 'Network Error!'">
+        <button class="copy-address" x-text="buttonText" @click="copyAddress()"></button>
+    </template>
+</body>
+
+</html>
