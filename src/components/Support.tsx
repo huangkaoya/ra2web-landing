@@ -2,16 +2,19 @@
 
 export default function Support() {
   return (
-    <section id="donate" className="py-16 bg-gray-100 text-gray-800">
+    <section 
+      id="donate" 
+      className="py-16 bg-[#ececec] text-gray-800"
+    >
       <div className="container mx-auto px-4 max-w-[1100px]">
-        <h2 className="text-3xl font-bold text-center mb-4">支持红色井界™</h2>
-        <p className="text-center max-w-3xl mx-auto mb-4">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">支持红色井界™</h2>
+        <p className="text-center max-w-3xl mx-auto mb-4 text-gray-600">
           红色井界™ 能够成功运作离不开 ChronoDivide 的可持续发展，基础设施（服务器、带宽）等都需要不菲的费用来维持运转，您如果觉得好玩，还请为 ChronoDivide 捐款！
         </p>
-        <p className="text-center max-w-3xl mx-auto mb-8">
+        <p className="text-center max-w-3xl mx-auto mb-8 text-gray-600">
           为了满足跨国资金流动需要，确保捐赠可以透明地支持到 ChronoDivide 作者，我们决定采用加密货币的形式，目前支持BTC、ETH、DOGE三种加密货币，以及支持按月订阅（类似于充电）的Buy Me A Coffee，下方的地址直接为 ChronoDivide 作者账户，您可以在区块链上透明地查看到每一笔捐助。如果您不知道如何操作，可以微信关注公众号 思牛逼 了解加密货币基础知识，再次感谢您的关注和支持！
         </p>
-        <div className="w-20 h-1 bg-red-500 mx-auto mb-12"></div>
+        <div className="w-64 h-1 bg-[#ff9408] mx-auto mb-12"></div>
         
         <div className="flex flex-wrap justify-center gap-6">
           {/* Buy Me A Coffee */}

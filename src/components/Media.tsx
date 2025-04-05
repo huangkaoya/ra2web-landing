@@ -21,36 +21,40 @@ export default function Media() {
       style={{ backgroundImage: 'url("/img/Features-bg.jpg")' }}
     >
       <div className="container mx-auto px-4 max-w-[1100px]">
-        <h2 className="text-3xl font-bold text-center mb-4">频道</h2>
-        <div className="w-20 h-1 bg-red-500 mx-auto mb-12"></div>
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">频道</h2>
+        <div className="w-64 h-1 bg-[#ff9408] mx-auto mb-12"></div>
         
         {/* Video Section */}
         <div className="max-w-3xl mx-auto mb-12">
-          <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-xl">
-            <iframe 
-              className="absolute top-0 left-0 w-full h-full"
-              src="//player.bilibili.com/player.html?isOutside=true&aid=408967329&bvid=BV1VG411i7c9&cid=1344632796&p=1"
-              scrolling="no" 
-              frameBorder="0"
-              allowFullScreen
-            ></iframe>
+          <div className="bg-white border-4 border-white shadow-xl">
+            <div className="relative pb-[56.25%] h-0 overflow-hidden border border-[#d0d0d0]">
+              <iframe 
+                className="absolute top-0 left-0 w-full h-full"
+                src="//player.bilibili.com/player.html?isOutside=true&aid=408967329&bvid=BV1VG411i7c9&cid=1344632796&p=1"
+                scrolling="no" 
+                frameBorder="0"
+                allowFullScreen
+              ></iframe>
+            </div>
           </div>
         </div>
         
         {/* Screenshots Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
           {screenshots.map((screenshot, index) => (
-            <div key={index} className="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 bg-white/90">
-              <button 
-                onClick={() => setActiveImg(screenshot.full)}
-                className="w-full h-full"
-              >
-                <img 
-                  src={screenshot.thumb} 
-                  alt={`游戏截图 ${index + 1}`} 
-                  className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </button>
+            <div key={index} className="overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
+              <div className="p-1 bg-white">
+                <button 
+                  onClick={() => setActiveImg(screenshot.full)}
+                  className="w-full h-full block border border-[#d0d0d0] overflow-hidden"
+                >
+                  <img 
+                    src={screenshot.thumb} 
+                    alt={`游戏截图 ${index + 1}`} 
+                    className="w-full h-auto block"
+                  />
+                </button>
+              </div>
             </div>
           ))}
         </div>
@@ -62,18 +66,22 @@ export default function Media() {
             onClick={() => setActiveImg(null)}
           >
             <button 
-              className="absolute top-4 right-4 text-white hover:text-red-500 transition-colors"
+              className="absolute top-4 right-4 text-white hover:text-[#ff9408] transition-colors"
               onClick={() => setActiveImg(null)}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-            <img 
-              src={activeImg} 
-              alt="游戏截图大图" 
-              className="max-w-full max-h-[90vh] object-contain"
-            />
+            <div className="p-4 bg-white max-w-4xl mx-auto">
+              <div className="border border-[#d0d0d0]">
+                <img 
+                  src={activeImg} 
+                  alt="游戏截图大图" 
+                  className="max-w-full max-h-[80vh] object-contain block"
+                />
+              </div>
+            </div>
           </div>
         )}
       </div>
