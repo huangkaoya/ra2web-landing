@@ -139,7 +139,11 @@ export default function Navigation() {
                     <Tag
                       href={item.href}
                       {...linkProps}
-                      className={`relative flex items-center font-normal font-['Open_Sans'] text-base text-white no-underline h-full transition-all duration-300 ${isScrolled ? 'py-[16px] px-[20px]' : 'pt-[42px] pb-[33px] px-[20px]'}`}
+                      className={`relative flex items-center font-normal font-['Open_Sans'] text-base text-white no-underline h-full transition-all duration-300 
+                        ${isScrolled 
+                          ? 'py-[16px] md:px-[10px] lg:px-[20px] xl:px-[20px]' 
+                          : 'md:pt-[30px] md:pb-[30px] md:px-[10px] lg:pt-[30px] lg:pb-[30px] lg:px-[30px] xl:pt-[42px] xl:pb-[33px] xl:px-[41px]'
+                        }`}
                     >
                       {item.label}
                       <span 
