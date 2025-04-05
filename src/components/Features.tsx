@@ -42,7 +42,11 @@ export default function Features() {
   ];
 
   return (
-    <section id="features" className="py-16 bg-gray-100">
+    <section 
+      id="features" 
+      className="py-16 bg-cover bg-center bg-no-repeat text-white"
+      style={{ backgroundImage: 'url("/img/Features-bg.jpg")' }}
+    >
       <div className="container mx-auto px-4 max-w-[1100px]">
         <h2 className="text-3xl font-bold text-center mb-4">核心特色</h2>
         <div className="w-20 h-1 bg-red-500 mx-auto mb-12"></div>
@@ -51,12 +55,12 @@ export default function Features() {
           {featureItems.map((item, index) => (
             <div 
               key={index} 
-              className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-white/90 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
               <div className="flex justify-center mb-4">
                 {item.icon}
               </div>
-              <h3 className="text-xl font-bold text-center mb-3">{item.title}</h3>
+              <h3 className="text-xl font-bold text-center mb-3 text-gray-800">{item.title}</h3>
               <p className="text-gray-600 text-center">{item.description}</p>
             </div>
           ))}

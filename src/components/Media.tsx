@@ -15,7 +15,11 @@ export default function Media() {
   ];
   
   return (
-    <section id="media" className="py-16 bg-white">
+    <section 
+      id="media" 
+      className="py-16 bg-cover bg-center bg-no-repeat text-white"
+      style={{ backgroundImage: 'url("/img/Features-bg.jpg")' }}
+    >
       <div className="container mx-auto px-4 max-w-[1100px]">
         <h2 className="text-3xl font-bold text-center mb-4">频道</h2>
         <div className="w-20 h-1 bg-red-500 mx-auto mb-12"></div>
@@ -36,7 +40,7 @@ export default function Media() {
         {/* Screenshots Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {screenshots.map((screenshot, index) => (
-            <div key={index} className="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+            <div key={index} className="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 bg-white/90">
               <button 
                 onClick={() => setActiveImg(screenshot.full)}
                 className="w-full h-full"

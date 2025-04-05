@@ -31,7 +31,11 @@ export default function Banner() {
   }, [slides.length]);
 
   return (
-    <div className="bg-gradient-to-b from-gray-900 to-gray-800 text-white pt-[56px] md:pt-[102px]" id="home">
+    <div 
+      className="text-white pt-[56px] md:pt-[102px] bg-cover bg-center bg-no-repeat" 
+      style={{ backgroundImage: 'url("/img/Banner-bg.jpg")' }}
+      id="home"
+    >
       <div className="container mx-auto px-4 py-8 md:py-16 max-w-[1100px]">
         <div className="flex flex-col lg:flex-row items-center">
           {/* Left Side - Welcome Text */}
