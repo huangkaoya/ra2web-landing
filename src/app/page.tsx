@@ -8,7 +8,6 @@ import Features from '../components/Features';
 import Community from '../components/Community';
 import Media from '../components/Media';
 import Support from '../components/Support';
-import Play from '../components/Play';
 import Footer from '../components/Footer';
 
 export default function Home() {
@@ -43,7 +42,6 @@ export default function Home() {
             <Community />
             <Media />
             <Support />
-            <Play />
             <Footer />
           </div>
         </div>
