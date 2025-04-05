@@ -1,6 +1,8 @@
 "use client";
 
-export default function Play() {
+import FooterContent from './FooterContent';
+
+export default function Footer() {
   return (
     <section 
       id="play" 
@@ -23,20 +25,7 @@ export default function Play() {
         </div>
       </div>
       <footer className="w-full text-center bg-black/60">
-        <div className="Cntr max-w-[1100px] py-7 mx-auto">
-          <p className="footer-links text-[#a9abad] text-[13px] flex items-center justify-center flex-wrap gap-1">
-            <a href="/privacy" className="text-[#a9abad] hover:text-white no-underline px-2" rel="nofollow">隐私政策</a> 
-            <span className="text-[#a9abad]">|</span>
-            <a href="/cookies" className="text-[#a9abad] hover:text-white no-underline px-2" rel="nofollow">Cookie政策</a> 
-            <span className="text-[#a9abad]">|</span>
-            <a href="/tos" className="text-[#a9abad] hover:text-white no-underline px-2" rel="nofollow">服务条款</a> 
-            <span className="text-[#a9abad]">|</span>
-            <a href="mailto:contact@chronodivide.com" className="text-[#a9abad] hover:text-white no-underline px-2" rel="nofollow">联系我们</a>
-          </p>
-          <br />
-          <p className="text-[13px] text-[#a9abad]">法律声明：RA2WEB® 是 RA2WEB LTD 的注册商标，红色井界™ 王二火大™ 网页红井™ 及 "红围巾鸟"卡通形象 是 RA2WEB LTD 的商标，受法律保护。红色警戒®是美国艺电公司的注册商标，受法律保护，页面展示仅用于说明背景，无侵权意图。游戏为非盈利作品，使用部分红色警戒®美术素材，无侵权意图，目前正在逐步替换中。</p>
-          <p className="text-[13px] text-[#a9abad]">Copyright © 2025 RA2WEB</p>
-        </div>
+        <FooterContent />
       </footer>
     </section>
   );
