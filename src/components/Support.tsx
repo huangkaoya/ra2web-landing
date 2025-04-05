@@ -93,7 +93,7 @@ export default function Support() {
       className="py-16 bg-[#ececec] text-gray-800"
     >
       <div className="container mx-auto px-4 max-w-[1100px] text-center">
-        <h2 className="text-4xl md:text-[50px] font-normal uppercase font-['Oswald',sans-serif] leading-[60px]">支持红色井界™</h2>
+        <h2 className="text-4xl md:text-[50px] font-normal uppercase font-['Oswald',sans-serif] leading-[60px] text-center mb-8">支持红色井界™</h2>
         <p className="mt-6 mb-4 text-[14px] text-[#8f8f8f] max-w-3xl mx-auto">
           红色井界™ 能够成功运作离不开 ChronoDivide 的可持续发展，基础设施（服务器、带宽）等都需要不菲的费用来维持运转，您如果觉得好玩，还请为 ChronoDivide 捐款！
         </p>

@@ -21,8 +21,8 @@ export default function Media() {
       style={{ backgroundImage: 'url("/img/Features-bg.jpg")' }}
     >
       <div className="container mx-auto px-4 max-w-[1100px]">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">频道</h2>
-        <div className="w-64 h-1 bg-[#ff9408] mx-auto mb-12"></div>
+        <h2 className="text-4xl md:text-[50px] font-normal uppercase font-['Oswald',sans-serif] leading-[60px] text-center mb-8">频道</h2>
+        <div className="w-64 h-[2px] bg-[#ff9408] mx-auto mb-12"></div>
         
         {/* Video Section */}
         <div className="max-w-3xl mx-auto mb-12">

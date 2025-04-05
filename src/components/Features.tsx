@@ -39,8 +39,8 @@ export default function Features() {
       style={{ backgroundImage: 'url("/img/Features-bg.jpg")' }}
     >
       <div className="container mx-auto px-4 max-w-[1100px]">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 uppercase">核心特色</h2>
-        <div className="w-64 h-1 bg-[#ff9408] mx-auto mb-12"></div>
+        <h2 className="text-4xl md:text-[50px] font-normal uppercase font-['Oswald',sans-serif] leading-[60px] text-center mb-8">核心特色</h2>
+        <div className="w-64 h-[2px] bg-[#ff9408] mx-auto mb-12"></div>
         
         <div className="Featureside pt-16 pb-7 w-full">
           <ul className="list-none flex flex-wrap justify-center md:justify-between md:flex-nowrap">

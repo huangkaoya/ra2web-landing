@@ -11,7 +11,7 @@ export default function About() {
       className="py-16 bg-white text-gray-800"
     >
       <div className="container mx-auto px-4 max-w-[1100px]">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">关于红色井界™</h2>
+        <h2 className="text-4xl md:text-[50px] font-normal uppercase font-['Oswald',sans-serif] leading-[60px] text-center mb-8">关于红色井界™</h2>
         <p className="text-center max-w-3xl mx-auto mb-4 text-gray-600">
           红色井界™当前是 <strong>Chronodivide</strong> 的镜像运营站点。<strong>Chronodivide</strong> 
           是首个完全基于网页技术开发的、对标知名即时战略游戏 《红色警戒2》 的游戏引擎，
@@ -26,7 +26,7 @@ export default function About() {
           <strong>Chronodivide</strong> 的终极目标是打造跨平台的即时战略类游戏引擎，当前已经初步证明了这一点。真诚欢迎各位有志之士一同参与社区建设，共同促进社区繁荣！
         </p>
         
-        <div className="w-64 h-1 bg-[#ff9408] mx-auto mb-12"></div>
+        <div className="w-64 h-[2px] bg-[#ff9408] mx-auto mb-12"></div>
         
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">

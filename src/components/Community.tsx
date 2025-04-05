@@ -7,11 +7,11 @@ export default function Community() {
       className="py-16 bg-[#ececec] text-gray-800"
     >
       <div className="container mx-auto px-4 max-w-[1100px]">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">社区</h2>
+        <h2 className="text-4xl md:text-[50px] font-normal uppercase font-['Oswald',sans-serif] leading-[60px] text-center mb-8">社区</h2>
         <p className="text-center max-w-2xl mx-auto mb-8 text-gray-600">
           从微信公众号 思牛逼 获取各类周边资讯（包括加速器、攻略、QQ群等）。
         </p>
-        <div className="w-64 h-1 bg-[#ff9408] mx-auto mb-12"></div>
+        <div className="w-64 h-[2px] bg-[#ff9408] mx-auto mb-12"></div>
         
         <div className="flex justify-center space-x-8">
           <a 
