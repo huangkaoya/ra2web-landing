@@ -29,26 +29,26 @@ export default function About() {
         <div className="w-64 h-1 bg-[#ff9408] mx-auto mb-12"></div>
         
         <div className="max-w-4xl mx-auto">
-          <div className="border-b border-gray-200 mb-8">
-            <ul className="flex flex-wrap -mb-px">
-              <li className="mr-2">
+          <div className="text-center mb-12">
+            <ul className="inline-flex">
+              <li className="inline-block">
                 <button
-                  className={`inline-block p-4 border-b-2 rounded-t-lg ${
+                  className={`text-[18px] font-normal px-10 py-3.5 uppercase transition-colors cursor-pointer ${
                     activeTab === 'news'
-                      ? 'text-[#ff9408] border-[#ff9408]'
-                      : 'border-transparent hover:text-gray-600 hover:border-gray-300'
+                      ? 'bg-[#ff9408] text-white border border-[#ff9408]'
+                      : 'text-[#989898] border border-gray-300 hover:bg-[#ff9408] hover:text-white hover:border-[#ff9408]'
                   }`}
                   onClick={() => setActiveTab('news')}
                 >
                   新闻
                 </button>
               </li>
-              <li className="mr-2">
+              <li className="inline-block -ml-[2px]">
                 <button
-                  className={`inline-block p-4 border-b-2 rounded-t-lg ${
+                  className={`text-[18px] font-normal px-10 py-3.5 uppercase transition-colors cursor-pointer ${
                     activeTab === 'specs'
-                      ? 'text-[#ff9408] border-[#ff9408]'
-                      : 'border-transparent hover:text-gray-600 hover:border-gray-300'
+                      ? 'bg-[#ff9408] text-white border border-[#ff9408]'
+                      : 'text-[#989898] border border-gray-300 hover:bg-[#ff9408] hover:text-white hover:border-[#ff9408]'
                   }`}
                   onClick={() => setActiveTab('specs')}
                 >
@@ -58,31 +58,44 @@ export default function About() {
             </ul>
           </div>
           
-          <div className="tab-content">
+          <div className="tab-content pb-16">
             {activeTab === 'news' && (
-              <div className="flex flex-col md:flex-row">
-                <div className="md:w-1/2 mb-6 md:mb-0 md:pr-6">
-                  <img src="/img/lobby-main.jpg" alt="游戏大厅" className="rounded-lg shadow-lg" />
+              <div className="flex flex-col md:flex-row md:space-x-12">
+                <div className="md:w-[43.63%] mb-10 md:mb-0 md:float-left">
+                  <div className="relative ml-0 md:ml-6">
+                    <img 
+                      src="/img/lobby-main.jpg" 
+                      alt="游戏大厅" 
+                      className="shadow-lg border border-[#ececec] bg-white p-2.5"
+                    />
+                  </div>
                 </div>
-                <div className="md:w-1/2">
-                  <h3 className="text-2xl font-bold mb-4 text-gray-800">开发进展<span className="block text-sm font-normal text-[#ff9408]">持续更新中……</span></h3>
-                  <p className="mb-4 text-gray-600">当前已经支持联机、单机，游戏地图持续增加中，并支持游玩自定义地图，而且可以免费查看对战录像回放。</p>
-                  <p className="text-gray-600">
+                <div className="md:w-[54.3%] md:float-right text-left">
+                  <h3 className="text-2xl md:text-[24px] font-bold uppercase text-black leading-7">开发进展<span className="block text-sm font-normal text-[#ff9000] mt-1">持续更新中……</span></h3>
+                  <p className="pt-7 pb-5 text-[#979797] leading-6">当前已经支持联机、单机，游戏地图持续增加中，并支持游玩自定义地图，而且可以免费查看对战录像回放。</p>
+                  <p className="text-[#979797] leading-6">
                     你可以在 <a href="/patch-notes" className="text-[#ff9408] hover:text-[#ff9408] hover:underline">此处</a> 
                     查看游戏更新的最新情报，或者微信关注公众号 思牛逼 获取各类周边资讯（包括加速器、攻略、QQ群等）。
                   </p>
                 </div>
+                <div className="clear-both"></div>
               </div>
             )}
             
             {activeTab === 'specs' && (
-              <div className="flex flex-col md:flex-row">
-                <div className="md:w-1/2 mb-6 md:mb-0 md:pr-6">
-                  <img src="/img/lobby-main.jpg" alt="游戏大厅" className="rounded-lg shadow-lg" />
+              <div className="flex flex-col md:flex-row md:space-x-12">
+                <div className="md:w-[43.63%] mb-10 md:mb-0 md:float-left">
+                  <div className="relative ml-0 md:ml-6">
+                    <img 
+                      src="/img/lobby-main.jpg" 
+                      alt="游戏大厅" 
+                      className="shadow-lg border border-[#ececec] bg-white p-2.5"
+                    />
+                  </div>
                 </div>
-                <div className="md:w-1/2">
-                  <h3 className="text-2xl font-bold mb-4 text-gray-800">建议游戏配置</h3>
-                  <ul className="space-y-2 list-disc pl-5 text-gray-600">
+                <div className="md:w-[54.3%] md:float-right text-left">
+                  <h3 className="text-2xl md:text-[24px] font-bold uppercase text-black leading-7">建议游戏配置</h3>
+                  <ul className="list-disc pl-5 text-[#979797] pt-7 space-y-4">
                     <li>CPU: Intel Atom Z3700+ @1.33GHz (安卓、苹果等建议使用2018年及之后的新设备)</li>
                     <li>OS: 64位操作系统 (并且需要支持能打开浏览器)</li>
                     <li>Memory: 4GB (如果更大则更好)</li>
@@ -91,6 +104,7 @@ export default function About() {
                     <li>浏览器: 最新版本的 Google Chrome, Mozilla Firefox, Microsoft Edge or Safari (尽可能避免使用 Firefox)</li>
                   </ul>
                 </div>
+                <div className="clear-both"></div>
               </div>
             )}
           </div>
