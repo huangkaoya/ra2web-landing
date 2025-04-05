@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 export default function Banner() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -68,9 +69,10 @@ export default function Banner() {
                   key={index}
                   className={`slider-item transition-opacity duration-1000 absolute inset-0 ${index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
                 >
-                  <img
+                  <Image
                     src={slide.image}
                     alt={slide.title}
+                    fill
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white p-4">

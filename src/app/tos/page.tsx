@@ -64,7 +64,7 @@ export default function TermsOfService() {
           <section>
             <h3 className="text-xl font-bold mb-3 text-gray-800">6. 免责声明</h3>
             <p>
-              我们的服务按"原样"提供，不附带任何形式的明示或暗示的保证。我们不保证服务将不间断、及时、安全或无错误，也不保证通过使用服务获得的结果将准确或可靠。
+              我们的服务按&quot;原样&quot;提供，不附带任何形式的明示或暗示的保证。我们不保证服务将不间断、及时、安全或无错误，也不保证通过使用服务获得的结果将准确或可靠。
             </p>
           </section>
           

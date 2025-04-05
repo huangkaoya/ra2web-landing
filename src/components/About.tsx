@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 export default function About() {
   const [activeTab, setActiveTab] = useState('news');
@@ -15,7 +16,7 @@ export default function About() {
         <p className="text-center max-w-3xl mx-auto mb-4 text-gray-600">
           红色井界™当前是 <strong>Chronodivide</strong> 的镜像运营站点。<strong>Chronodivide</strong> 
           是首个完全基于网页技术开发的、对标知名即时战略游戏 《红色警戒2》 的游戏引擎，
-          具有完全知识产权的闭源项目，人们称其为"网页红警"，深受全球20余万用户喜爱。
+          具有完全知识产权的闭源项目，人们称其为&quot;网页红警&quot;，深受全球20余万用户喜爱。
         </p>
         <p className="text-center max-w-3xl mx-auto mb-4 text-gray-600">
           红色井界™致力于提升 <strong>Chronodivide</strong> 
@@ -63,9 +64,11 @@ export default function About() {
               <div className="flex flex-col md:flex-row md:space-x-12">
                 <div className="md:w-[43.63%] mb-10 md:mb-0 md:float-left">
                   <div className="relative ml-0 md:ml-6">
-                    <img 
+                    <Image 
                       src="/img/lobby-main.jpg" 
                       alt="游戏大厅" 
+                      width={600}
+                      height={400}
                       className="shadow-lg border border-[#ececec] bg-white p-2.5"
                     />
                   </div>
@@ -86,9 +89,11 @@ export default function About() {
               <div className="flex flex-col md:flex-row md:space-x-12">
                 <div className="md:w-[43.63%] mb-10 md:mb-0 md:float-left">
                   <div className="relative ml-0 md:ml-6">
-                    <img 
+                    <Image 
                       src="/img/lobby-main.jpg" 
                       alt="游戏大厅" 
+                      width={600}
+                      height={400}
                       className="shadow-lg border border-[#ececec] bg-white p-2.5"
                     />
                   </div>

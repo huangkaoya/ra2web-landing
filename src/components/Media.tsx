@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 export default function Media() {
   const [activeImg, setActiveImg] = useState<string | null>(null);
@@ -48,9 +49,11 @@ export default function Media() {
                   onClick={() => setActiveImg(screenshot.full)}
                   className="w-full h-full block border border-[#d0d0d0] overflow-hidden"
                 >
-                  <img 
+                  <Image 
                     src={screenshot.thumb} 
                     alt={`游戏截图 ${index + 1}`} 
+                    width={400}
+                    height={225}
                     className="w-full h-auto block"
                   />
                 </button>
@@ -75,9 +78,11 @@ export default function Media() {
             </button>
             <div className="p-4 bg-white max-w-4xl mx-auto">
               <div className="border border-[#d0d0d0]">
-                <img 
+                <Image 
                   src={activeImg} 
                   alt="游戏截图大图" 
+                  width={1200}
+                  height={675}
                   className="max-w-full max-h-[80vh] object-contain block"
                 />
               </div>

@@ -1,5 +1,7 @@
 "use client";
 
+import Image from 'next/image';
+
 export default function Community() {
   return (
     <section 
@@ -42,10 +44,12 @@ export default function Community() {
         </div>
         
         <div className="mt-12 text-center">
-          <img 
+          <Image 
             src="/img/wechat-qr.jpg" 
             alt="微信公众号二维码" 
-            className="w-40 h-40 mx-auto rounded-lg shadow-lg"
+            width={160}
+            height={160}
+            className="mx-auto rounded-lg shadow-lg"
             style={{ display: 'none' }} // 如果有二维码图片，可以移除这个样式
           />
           <p className="mt-4 text-gray-600">扫描关注微信公众号<strong>思牛逼</strong>获取更多资讯</p>
