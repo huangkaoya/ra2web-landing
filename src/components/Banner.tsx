@@ -32,7 +32,7 @@ export default function Banner() {
 
   return (
     <div className="bg-gray-800 text-white" id="home">
-      <div className="container mx-auto px-4 py-8 md:py-16">
+      <div className="container mx-auto px-4 py-8 md:py-16 max-w-[1100px]">
         <div className="flex flex-col lg:flex-row items-center">
           {/* Left Side - Welcome Text */}
           <div className="lg:w-1/2 mb-8 lg:mb-0 lg:pr-8">

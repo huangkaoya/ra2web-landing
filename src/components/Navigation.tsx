@@ -8,11 +8,9 @@ const SECTION_IDS = ['home', 'about', 'features', 'community', 'media', 'donate'
 // Define navigation items
 const NAV_ITEMS = [
   { href: '#home', label: '首页' },
-  { href: '#about', label: '关于' },
   { href: '#features', label: '核心特色' },
   { href: '#community', label: '社区' },
   { href: '#media', label: '频道' },
-  { href: '#donate', label: '支持'},
   { href: '/patch-notes', label: '更新说明', isPageLink: true },
   { href: 'https://game.ra2web.com/', label: '点此开玩！', isExternal: true },
 ];
@@ -98,7 +96,7 @@ export default function Navigation() {
 
   return (
     <header className={`w-full fixed top-0 left-0 z-50 transition-all duration-500 ease-in-out ${isScrolled ? 'h-[56px] bg-black/75' : 'h-[102px] bg-black/50'}`}>
-      <div className="container mx-auto px-4 h-full flex justify-center items-center">
+      <div className="container mx-auto px-4 max-w-[1100px] h-full flex justify-center items-center">
         <Link 
           href="/#home" 
           onClick={(e) => handleNavClick(e, '#home')} 
@@ -133,7 +131,7 @@ export default function Navigation() {
                       target="_blank"
                       rel="nofollow noopener noreferrer"
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`relative block font-normal font-['Open_Sans'] text-base text-white no-underline ${isScrolled ? 'md:py-[16px] md:px-[41px]' : 'md:pt-[42px] md:pb-[33px] md:px-[41px]'} h-full transition-all duration-300`}
+                      className={`relative block font-normal font-['Open_Sans'] text-base text-white no-underline ${isScrolled ? 'md:py-[16px] md:px-[20px]' : 'md:pt-[42px] md:pb-[33px] md:px-[20px]'} h-full transition-all duration-300`}
                     >
                       {item.label}
                       <span 
@@ -153,7 +151,7 @@ export default function Navigation() {
                     <Tag
                       href={item.href}
                       onClick={(e) => handleNavClick(e as any, item.href)}
-                      className={`relative block font-normal font-['Open_Sans'] text-base text-white no-underline ${isScrolled ? 'md:py-[16px] md:px-[41px]' : 'md:pt-[42px] md:pb-[33px] md:px-[41px]'} h-full transition-all duration-300`}
+                      className={`relative block font-normal font-['Open_Sans'] text-base text-white no-underline ${isScrolled ? 'md:py-[16px] md:px-[20px]' : 'md:pt-[42px] md:pb-[33px] md:px-[20px]'} h-full transition-all duration-300`}
                     >
                       {item.label}
                       <span 

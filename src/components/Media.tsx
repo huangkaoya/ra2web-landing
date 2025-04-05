@@ -16,7 +16,7 @@ export default function Media() {
   
   return (
     <section id="media" className="py-16 bg-white">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 max-w-[1100px]">
         <h2 className="text-3xl font-bold text-center mb-4">频道</h2>
         <div className="w-20 h-1 bg-red-500 mx-auto mb-12"></div>
         

@@ -3,7 +3,7 @@
 export default function Play() {
   return (
     <section id="play" className="py-16 bg-red-600 text-white">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 max-w-[1100px]">
         <h2 className="text-3xl font-bold text-center mb-4">现在开玩</h2>
         <div className="w-20 h-1 bg-white mx-auto mb-12"></div>
         

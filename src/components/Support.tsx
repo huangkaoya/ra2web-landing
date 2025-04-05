@@ -3,7 +3,7 @@
 export default function Support() {
   return (
     <section id="donate" className="py-16 bg-gray-100 text-gray-800">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 max-w-[1100px]">
         <h2 className="text-3xl font-bold text-center mb-4">支持红色井界™</h2>
         <p className="text-center max-w-3xl mx-auto mb-4">
           红色井界™ 能够成功运作离不开 ChronoDivide 的可持续发展，基础设施（服务器、带宽）等都需要不菲的费用来维持运转，您如果觉得好玩，还请为 ChronoDivide 捐款！

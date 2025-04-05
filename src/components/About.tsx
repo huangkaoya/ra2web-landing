@@ -7,7 +7,7 @@ export default function About() {
   
   return (
     <section id="about" className="py-16 bg-white text-gray-800">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 max-w-[1100px]">
         <h2 className="text-3xl font-bold text-center mb-4">关于红色井界™</h2>
         <p className="text-center max-w-3xl mx-auto mb-4">
           红色井界™当前是 <strong>Chronodivide</strong> 的镜像运营站点。<strong>Chronodivide</strong> 

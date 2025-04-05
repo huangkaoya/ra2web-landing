@@ -5,7 +5,7 @@ import Link from 'next/link';
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white py-10">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 max-w-[1100px]">
         <div className="footer-links text-center mb-6">
           <Link 
             href="/privacy" 

@@ -43,7 +43,7 @@ export default function Features() {
 
   return (
     <section id="features" className="py-16 bg-gray-100">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 max-w-[1100px]">
         <h2 className="text-3xl font-bold text-center mb-4">核心特色</h2>
         <div className="w-20 h-1 bg-red-500 mx-auto mb-12"></div>
         
