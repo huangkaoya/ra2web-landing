@@ -95,8 +95,8 @@ export default function Navigation() {
   }, []);
 
   return (
-    <header className="w-full fixed top-0 left-0 z-50 transition-all duration-500 ease-in-out h-[56px] md:h-auto bg-black/75 md:bg-transparent">
-      <div className="md:h-full md:bg-black/50 md:transition-all md:duration-500">
+    <header className="w-full fixed top-0 left-0 z-50 transition-all duration-500 ease-in-out h-[56px] md:h-auto bg-black/50">
+      <div className="h-full w-full">
         <div className="container mx-auto px-4 max-w-[1100px] h-full flex justify-between items-center">
           {/* 在移动设备上固定小尺寸，在桌面设备上根据滚动状态变化 */}
           <Link 
@@ -141,7 +141,7 @@ export default function Navigation() {
                       {...linkProps}
                       className={`relative flex items-center font-normal font-['Open_Sans'] text-base text-white no-underline h-full transition-all duration-300 
                         ${isScrolled 
-                          ? 'py-[16px] md:px-[10px] lg:px-[20px] xl:px-[20px]' 
+                          ? 'md:py-[16px] md:px-[10px] lg:py-[16px] lg:px-[36px] xl:py-[16px] xl:px-[41px]' 
                           : 'md:pt-[30px] md:pb-[30px] md:px-[10px] lg:pt-[30px] lg:pb-[30px] lg:px-[30px] xl:pt-[42px] xl:pb-[33px] xl:px-[41px]'
                         }`}
                     >

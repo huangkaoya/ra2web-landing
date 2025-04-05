@@ -69,16 +69,11 @@ export default function Banner() {
                     alt={slide.title}
                     className="absolute inset-0 w-full h-full object-cover"
                   />
-                  <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-4">
-                    <p className="text-xl font-bold">{slide.title} <span className="text-sm font-normal block">{slide.subtitle}</span></p>
+                  <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white p-4">
+                    <p className="text-xl font-bold">{slide.title} <span className="text-sm font-normal block text-[#ff9000]">{slide.subtitle}</span></p>
                   </div>
                 </div>
               ))}
-              <img 
-                src="/img/Shadow-img.png" 
-                alt="" 
-                className="absolute -bottom-3 -left-4 w-[105%] z-20 pointer-events-none"
-              />
             </div>
             
             {/* Slider Navigation Dots */}
