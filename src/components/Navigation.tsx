@@ -95,63 +95,51 @@ export default function Navigation() {
   }, []);
 
   return (
-    <header className={`w-full fixed top-0 left-0 z-50 transition-all duration-500 ease-in-out ${isScrolled ? 'h-[56px] bg-black/75' : 'h-[102px] bg-black/50'}`}>
-      <div className="container mx-auto px-4 max-w-[1100px] h-full flex justify-center items-center">
-        <Link 
-          href="/#home" 
-          onClick={(e) => handleNavClick(e, '#home')} 
-          className={`site-logo bg-contain bg-no-repeat bg-left-top transition-all duration-500 ${isScrolled ? 'w-[106px] h-[50px] mt-[3px]' : 'w-[158px] h-[75px] mt-[15px]'} mr-auto`}
-          style={{ backgroundImage: "url('/img/logo.png')" }}
-          aria-label="返回首页"
-        />
+    <header className="w-full fixed top-0 left-0 z-50 transition-all duration-500 ease-in-out h-[56px] md:h-auto bg-black/75 md:bg-transparent">
+      <div className="md:h-full md:bg-black/50 md:transition-all md:duration-500">
+        <div className="container mx-auto px-4 max-w-[1100px] h-full flex justify-between items-center">
+          {/* 在移动设备上固定小尺寸，在桌面设备上根据滚动状态变化 */}
+          <Link 
+            href="/#home" 
+            onClick={(e) => handleNavClick(e, '#home')} 
+            className={`site-logo bg-contain bg-no-repeat bg-left-top w-[106px] h-[50px] mt-[3px] md:transition-all md:duration-500 ${isScrolled ? 'md:w-[106px] md:h-[50px] md:mt-[3px]' : 'md:w-[158px] md:h-[75px] md:mt-[15px]'}`}
+            style={{ backgroundImage: "url('/img/logo.png')" }}
+            aria-label="返回首页"
+          />
 
-        {/* 移动端菜单按钮 */}
-        <div className="md:hidden">
-          <button onClick={toggleMenu} className="text-white focus:outline-none p-2">
+          {/* 移动端菜单按钮 - 紧贴边缘 */}
+          <button 
+            onClick={toggleMenu} 
+            className={`md:hidden text-white focus:outline-none ${mobileMenuOpen ? 'bg-[#e3860e]' : 'bg-[#ff9408]'} w-[55px] h-[56px] flex items-center justify-center transition-colors absolute top-0 right-0`}
+            aria-label={mobileMenuOpen ? "关闭菜单" : "打开菜单"}
+          >
             {mobileMenuOpen ? (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
             ) : (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
             )}
           </button>
-        </div>
 
-        {/* 导航菜单 */}
-        <nav className={`absolute md:static top-full left-0 w-full md:w-auto md:ml-auto bg-black/95 md:bg-transparent z-40 transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'translate-y-0 shadow-lg' : '-translate-y-full'} md:translate-y-0 md:shadow-none md:block`}>
-          <ul className="md:flex md:flex-row list-none m-0">
-            {NAV_ITEMS.map((item) => {
-              const sectionId = item.href.startsWith('#') ? item.href.substring(1) : null;
-              const isActive = sectionId === activeSection;
-
-              if (item.isExternal) {
-                return (
-                  <li key={item.href} className={`md:float-left m-0 p-0 relative ${isScrolled ? 'md:h-[56px]' : 'md:h-[102px]'} transition-all duration-500 group`}>
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="nofollow noopener noreferrer"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={`relative block font-normal font-['Open_Sans'] text-base text-white no-underline ${isScrolled ? 'md:py-[16px] md:px-[20px]' : 'md:pt-[42px] md:pb-[33px] md:px-[20px]'} h-full transition-all duration-300`}
-                    >
-                      {item.label}
-                      <span 
-                        className="absolute inset-0 z-[-10] border-b-[5px] border-[#ff9000] transition-opacity duration-500 bg-gradient-to-b from-[#57120d] to-[#FF5722] opacity-0 group-hover:opacity-100"
-                      />
-                    </a>
-                  </li>
-                );
-              } else {
-                // 内部链接 (section或页面)
+          {/* 桌面端导航 */}
+          <nav className="hidden md:flex md:items-center md:ml-auto">
+            <ul className="md:flex md:flex-row list-none m-0">
+              {NAV_ITEMS.map((item) => {
+                const sectionId = item.href.startsWith('#') ? item.href.substring(1) : null;
+                const isActive = sectionId === activeSection;
                 const Tag = item.isPageLink ? Link : 'a';
+                const linkProps = item.isExternal 
+                  ? { target: "_blank", rel: "nofollow noopener noreferrer" } 
+                  : { onClick: (e: React.MouseEvent<HTMLAnchorElement>) => handleNavClick(e, item.href) }; 
+
                 return (
                   <li 
                     key={item.href} 
-                    className={`md:float-left m-0 p-0 relative ${isScrolled ? 'md:h-[56px]' : 'md:h-[102px]'} transition-all duration-500 group ${isActive ? 'active' : ''}`}
+                    className={`m-0 p-0 relative transition-all duration-500 group ${isActive ? 'active' : ''} ${isScrolled ? 'h-[56px]' : 'h-[102px]'}`}
                   >
                     <Tag
                       href={item.href}
-                      onClick={(e) => handleNavClick(e as any, item.href)}
-                      className={`relative block font-normal font-['Open_Sans'] text-base text-white no-underline ${isScrolled ? 'md:py-[16px] md:px-[20px]' : 'md:pt-[42px] md:pb-[33px] md:px-[20px]'} h-full transition-all duration-300`}
+                      {...linkProps}
+                      className={`relative flex items-center font-normal font-['Open_Sans'] text-base text-white no-underline h-full transition-all duration-300 ${isScrolled ? 'py-[16px] px-[20px]' : 'pt-[42px] pb-[33px] px-[20px]'}`}
                     >
                       {item.label}
                       <span 
@@ -160,11 +148,45 @@ export default function Navigation() {
                     </Tag>
                   </li>
                 );
-              }
-            })}
-          </ul>
-        </nav>
+              })}
+            </ul>
+          </nav>
+        </div>
       </div>
+
+      {/* 移动导航菜单 */}
+      <nav 
+        className={`md:hidden fixed top-[56px] left-0 w-full bg-black/95 shadow-lg transition-all duration-300 ease-in-out z-40 ${
+          mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+        }`}
+        style={{ maxHeight: mobileMenuOpen ? '80vh' : '0', overflow: 'auto' }}
+      >
+        <ul className="flex flex-col list-none m-0">
+          {NAV_ITEMS.map((item) => {
+            const sectionId = item.href.startsWith('#') ? item.href.substring(1) : null;
+            const isActive = sectionId === activeSection;
+            const Tag = item.isPageLink ? Link : 'a';
+            const linkProps = item.isExternal 
+              ? { target: "_blank", rel: "nofollow noopener noreferrer", onClick: () => setMobileMenuOpen(false) } 
+              : { onClick: (e: React.MouseEvent<HTMLAnchorElement>) => handleNavClick(e, item.href) };
+
+            return (
+              <li 
+                key={item.href} 
+                className={`w-full border-b border-gray-700 last:border-b-0 ${isActive ? 'bg-[#ff9000]' : ''}`}
+              >
+                <Tag
+                  href={item.href}
+                  {...linkProps}
+                  className={`block w-full py-4 px-6 text-white font-normal font-['Open_Sans'] text-base no-underline hover:bg-[#333] transition-colors duration-200`}
+                >
+                  {item.label}
+                </Tag>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
     </header>
   );
 } 
