@@ -34,7 +34,7 @@ export default function Navigation() {
       if (element) {
         const elementPosition = element.getBoundingClientRect().top + window.scrollY;
         window.scrollTo({
-          top: elementPosition - (isScrolled ? 60 : 105), // 根据当前header高度调整偏移
+          top: elementPosition - (isScrolled ? 56 : 102), // 修正高度为102px (小版本为56px)
           behavior: 'smooth'
         });
         setMobileMenuOpen(false);
@@ -97,12 +97,12 @@ export default function Navigation() {
   }, []);
 
   return (
-    <header className={`w-full fixed top-0 left-0 z-50 transition-all duration-500 ease-in-out ${isScrolled ? 'h-[60px] bg-black/75' : 'h-[105px] bg-black/50'}`}>
-      <div className="container mx-auto px-4 h-full flex justify-between items-center">
+    <header className={`w-full fixed top-0 left-0 z-50 transition-all duration-500 ease-in-out ${isScrolled ? 'h-[56px] bg-black/75' : 'h-[102px] bg-black/50'}`}>
+      <div className="container mx-auto px-4 h-full flex justify-center items-center">
         <Link 
           href="/#home" 
           onClick={(e) => handleNavClick(e, '#home')} 
-          className={`site-logo bg-contain bg-no-repeat bg-left-top transition-all duration-500 ${isScrolled ? 'w-[106px] h-[50px] mt-[5px]' : 'w-[158px] h-[75px] mt-[17px]'}`}
+          className={`site-logo bg-contain bg-no-repeat bg-left-top transition-all duration-500 ${isScrolled ? 'w-[106px] h-[50px] mt-[3px]' : 'w-[158px] h-[75px] mt-[15px]'} mr-auto`}
           style={{ backgroundImage: "url('/img/logo.png')" }}
           aria-label="返回首页"
         />
@@ -119,23 +119,26 @@ export default function Navigation() {
         </div>
 
         {/* 导航菜单 */}
-        <nav className={`absolute md:static top-full left-0 w-full md:w-auto md:float-right md:mr-[11px] bg-black/95 md:bg-transparent z-40 transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'translate-y-0 shadow-lg' : '-translate-y-full'} md:translate-y-0 md:shadow-none md:block`}>
-          <ul className="md:float-right flex flex-col md:flex-row list-none m-0">
+        <nav className={`absolute md:static top-full left-0 w-full md:w-auto md:ml-auto bg-black/95 md:bg-transparent z-40 transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'translate-y-0 shadow-lg' : '-translate-y-full'} md:translate-y-0 md:shadow-none md:block`}>
+          <ul className="md:flex md:flex-row list-none m-0">
             {NAV_ITEMS.map((item) => {
               const sectionId = item.href.startsWith('#') ? item.href.substring(1) : null;
               const isActive = sectionId === activeSection;
 
               if (item.isExternal) {
                 return (
-                  <li key={item.href} className={`md:float-left m-0 p-0 relative ${isScrolled ? 'md:h-[60px]' : 'md:h-[105px]'} transition-all duration-500`}>
+                  <li key={item.href} className={`md:float-left m-0 p-0 relative ${isScrolled ? 'md:h-[56px]' : 'md:h-[102px]'} transition-all duration-500 group`}>
                     <a
                       href={item.href}
                       target="_blank"
                       rel="nofollow noopener noreferrer"
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`block font-normal text-base text-white no-underline transition-all duration-300 bg-[#ff9000] hover:bg-[#e3860e] ${isScrolled ? 'md:py-[14px] md:px-[20px] my-2 md:my-[12px] mx-2 md:mx-[6px]' : 'md:py-[14px] md:px-[20px] my-2 md:my-[33px] mx-2 md:mx-[6px]'}`}
+                      className={`relative block font-normal font-['Open_Sans'] text-base text-white no-underline ${isScrolled ? 'md:py-[16px] md:px-[41px]' : 'md:pt-[42px] md:pb-[33px] md:px-[41px]'} h-full transition-all duration-300`}
                     >
                       {item.label}
+                      <span 
+                        className="absolute inset-0 z-[-10] border-b-[5px] border-[#ff9000] transition-opacity duration-500 bg-gradient-to-b from-[#57120d] to-[#FF5722] opacity-0 group-hover:opacity-100"
+                      />
                     </a>
                   </li>
                 );
@@ -145,16 +148,16 @@ export default function Navigation() {
                 return (
                   <li 
                     key={item.href} 
-                    className={`md:float-left m-0 p-0 relative ${isScrolled ? 'md:h-[60px]' : 'md:h-[105px]'} transition-all duration-500 ${isActive ? 'active' : ''}`}
+                    className={`md:float-left m-0 p-0 relative ${isScrolled ? 'md:h-[56px]' : 'md:h-[102px]'} transition-all duration-500 group ${isActive ? 'active' : ''}`}
                   >
                     <Tag
                       href={item.href}
                       onClick={(e) => handleNavClick(e as any, item.href)}
-                      className={`relative block font-normal font-['Open_Sans'] text-base text-white no-underline ${isScrolled ? 'md:py-[16px] md:px-[41px]' : 'md:pt-[42px] md:pb-[36px] md:px-[41px]'} transition-all duration-300`}
+                      className={`relative block font-normal font-['Open_Sans'] text-base text-white no-underline ${isScrolled ? 'md:py-[16px] md:px-[41px]' : 'md:pt-[42px] md:pb-[33px] md:px-[41px]'} h-full transition-all duration-300`}
                     >
                       {item.label}
                       <span 
-                        className={`absolute top-0 left-0 w-full h-full z-[-10] border-b-[5px] border-[#ff9000] transition-opacity duration-500 bg-gradient-to-b from-[#57120d] to-[#FF5722] opacity-0 ${isActive ? '!opacity-100' : ''}`}
+                        className={`absolute inset-0 z-[-10] border-b-[5px] border-[#ff9000] transition-opacity duration-500 bg-gradient-to-b from-[#57120d] to-[#FF5722] opacity-0 group-hover:opacity-100 ${isActive ? '!opacity-100' : ''}`}
                       />
                     </Tag>
                   </li>
