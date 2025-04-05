@@ -36,7 +36,7 @@ export default function Home() {
         <div className="layout-frame m-0 auto w-full block">
           <Navigation />
           <Banner />
-          <div className="bgcolor h-[74px] w-full bg-gradient-to-b from-gray-800 to-gray-100"></div>
+          <div className="bgcolor h-[74px] w-full bg-gradient-to-b from-[#f9fafb] to-[#e1e4e7]"></div>
           <div id="container" className="overflow-hidden w-full">
             <About />
             <Features />
