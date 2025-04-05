@@ -5,24 +5,24 @@ import Link from 'next/link';
 
 // Define section IDs for scroll spying
 const SECTION_IDS = ['home', 'about', 'features', 'community', 'media', 'donate', 'play'];
-// Define navigation items
+// Define navigation items (matching old site structure + added sections)
 const NAV_ITEMS = [
   { href: '#home', label: '首页' },
-  { href: '#about', label: '关于' }, // Added 'About' link for completeness
+  { href: '#about', label: '关于' },
   { href: '#features', label: '核心特色' },
   { href: '#community', label: '社区' },
   { href: '#media', label: '频道' },
-  { href: '#donate', label: '支持'}, // Added 'Donate' link
+  { href: '#donate', label: '支持'},
   { href: '/patch-notes', label: '更新说明', isPageLink: true },
   { href: 'https://game.ra2web.com/', label: '点此开玩！', isExternal: true },
 ];
-const STICKY_HEADER_HEIGHT = 68; // Approximate height of the sticky header in pixels
+const HEADER_HEIGHT_APPROX = 60; // Approximate height for scroll calculations if needed, less critical now
 
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const [isScrolled, setIsScrolled] = useState(false);
-  const headerRef = useRef<HTMLElement>(null); // Ref to get header height if needed
+  // isScrolled state is no longer needed for non-sticky header
+  // const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -37,10 +37,9 @@ export default function Navigation() {
       if (element) {
         const offsetTop = element.offsetTop;
         window.scrollTo({
-          top: offsetTop - STICKY_HEADER_HEIGHT, // Offset for sticky header
+          top: offsetTop - HEADER_HEIGHT_APPROX, // Small offset might still be needed depending on layout
           behavior: 'smooth'
         });
-        // setActiveSection(targetId); // Set active immediately (optional, scroll handler will update too)
         setMobileMenuOpen(false); // Close mobile menu
       }
     } else {
@@ -49,16 +48,13 @@ export default function Navigation() {
     }
   };
 
-  // Effect for scroll spying and sticky header
+  // Effect for scroll spying
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const windowHeight = window.innerHeight;
 
-      // Update sticky state
-      setIsScrolled(scrollPosition > 10);
-
-      // Determine active section
+      // Determine active section (adjust threshold slightly if needed without sticky header)
       let currentSection = '';
       let foundSection = false;
 
@@ -66,8 +62,9 @@ export default function Navigation() {
         const id = SECTION_IDS[i];
         const element = document.getElementById(id);
         if (element) {
-          const elementTop = element.offsetTop - STICKY_HEADER_HEIGHT - 50; // Adjust threshold
-          // Check if the top of the section is above the middle of the screen
+          // Adjust threshold - element top relative to scroll position
+          // Consider the section active if its top is within ~100px from the top of viewport
+          const elementTop = element.offsetTop - 100;
           if (scrollPosition >= elementTop) {
             currentSection = id;
             foundSection = true;
@@ -76,20 +73,19 @@ export default function Navigation() {
         }
       }
 
-       // If scrolled to top or no section found yet, default to home
+      // Default to home if scrolled near top
       if (!foundSection && scrollPosition < windowHeight / 3) {
          currentSection = 'home';
       }
 
-
-      setActiveSection(currentSection || 'home'); // Ensure it defaults to 'home' if empty
+      setActiveSection(currentSection || 'home');
     };
 
     // Debounce scroll handler
     let timeoutId: NodeJS.Timeout | null = null;
     const debouncedScrollHandler = () => {
       if (timeoutId) clearTimeout(timeoutId);
-      timeoutId = setTimeout(handleScroll, 50); // Adjust debounce delay if needed
+      timeoutId = setTimeout(handleScroll, 50);
     };
 
     window.addEventListener('scroll', debouncedScrollHandler, { passive: true });
@@ -102,13 +98,9 @@ export default function Navigation() {
   }, []);
 
   return (
-    // Added sticky positioning and conditional shadow
-    <header
-      ref={headerRef}
-      className={`w-full bg-gray-900 text-white sticky top-0 z-50 transition-shadow duration-300 ${isScrolled ? 'shadow-lg' : ''}`}
-      style={{ height: `${STICKY_HEADER_HEIGHT}px` }} // Set explicit height
-    >
-      <div className="container mx-auto px-4 h-full flex justify-between items-center">
+    // Removed sticky positioning, shadow, and explicit height
+    <header className="w-full bg-gray-900 text-white z-50">
+      <div className="container mx-auto px-4 py-3 flex justify-between items-center min-h-[60px]">
         {/* Logo linked to #home with smooth scroll */}
         <a href="/#home" onClick={(e) => handleNavClick(e, '#home')} className="site-logo w-40 h-12 bg-contain bg-no-repeat bg-left shrink-0" style={{ backgroundImage: "url('/img/logo.png')" }} aria-label="返回首页">
         </a>
@@ -125,20 +117,20 @@ export default function Navigation() {
         </div>
 
         {/* Navigation Menu (Mobile and Desktop) */}
-        {/* Adjusted mobile menu positioning and transition */}
-        <nav className={`absolute md:relative top-full left-0 w-full md:top-0 md:w-auto bg-gray-900 md:bg-transparent z-40 transition-transform duration-300 ease-in-out transform ${mobileMenuOpen ? 'translate-y-0 shadow-lg' : '-translate-y-full'} md:translate-y-0 md:shadow-none md:block`}>
-           <ul className="flex flex-col md:flex-row md:items-center px-4 py-4 md:px-0 md:py-0 gap-y-2 md:gap-y-0">
+        {/* Mobile menu slides down from the header */}
+        <nav className={`absolute md:relative top-[60px] left-0 w-full md:top-0 md:w-auto bg-gray-900 md:bg-transparent z-40 transition-transform duration-300 ease-in-out transform ${mobileMenuOpen ? 'translate-y-0 shadow-lg' : '-translate-y-full'} md:translate-y-0 md:shadow-none md:block`}>
+           <ul className="flex flex-col md:flex-row md:items-center px-4 py-4 md:px-0 md:py-0 gap-y-2 md:gap-y-0 md:gap-x-1 lg:gap-x-3"> {/* Added gap-x for desktop */}
             {NAV_ITEMS.map((item) => {
-              // Determine if the link is active based on the section ID
               const sectionId = item.href.startsWith('#') ? item.href.substring(1) : null;
               const isActive = sectionId === activeSection;
-              // Base classes + conditional active class
-              const linkClasses = `py-2 md:py-1 px-3 block whitespace-nowrap transition-colors duration-200 rounded-md ${isActive ? 'text-white bg-red-600 font-semibold' : 'hover:text-white hover:bg-gray-700 font-medium'}`;
-              const externalLinkClasses = "bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300 inline-block";
+              // Refined styling: Added bottom border for active link, subtle hover
+              const linkClasses = `relative py-2 md:py-1 px-3 block whitespace-nowrap transition-colors duration-200 font-medium ${isActive ? 'text-red-500' : 'text-gray-300 hover:text-white'}`;
+              // External link button style
+              const externalLinkClasses = "bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300 inline-block text-sm";
 
               if (item.isExternal) {
                 return (
-                  <li key={item.href} className="md:ml-3">
+                  <li key={item.href} className="md:ml-2"> {/* Adjusted margin */}
                     <a
                       href={item.href}
                       target="_blank"
@@ -151,27 +143,34 @@ export default function Navigation() {
                   </li>
                 );
               } else if (item.isPageLink) {
+                 // Style page links similarly to section links
                 return (
-                  <li key={item.href} className="md:ml-3">
+                  <li key={item.href} className="md:ml-2 relative"> {/* Added relative for pseudo-element */}
                     <Link
                       href={item.href}
                       onClick={(e) => handleNavClick(e as any, item.href)}
-                      className={linkClasses} // Use standard link classes for page links too
+                      className={linkClasses}
+                      aria-current={isActive ? 'page' : undefined} // Better accessibility
                     >
                       {item.label}
+                       {/* Simulate active border */}
+                      {isActive && <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3/5 h-[3px] bg-red-600 rounded-t-sm"></span>}
                     </Link>
                   </li>
                 );
               } else {
                 // Internal section link
                 return (
-                  <li key={item.href} className="md:ml-3">
+                  <li key={item.href} className="md:ml-2 relative"> {/* Added relative for pseudo-element */}
                     <a
                       href={item.href}
                       onClick={(e) => handleNavClick(e, item.href)}
-                      className={linkClasses} // Apply active styling
+                      className={linkClasses}
+                      aria-current={isActive ? 'page' : undefined} // Better accessibility
                     >
                       {item.label}
+                      {/* Simulate active border */}
+                      {isActive && <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3/5 h-[3px] bg-red-600 rounded-t-sm"></span>}
                     </a>
                   </li>
                 );
