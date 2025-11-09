@@ -7,6 +7,7 @@ import About from '../components/About';
 import Features from '../components/Features';
 import Community from '../components/Community';
 import Media from '../components/Media';
+import Sponsors from '../components/Sponsors';
 import Support from '../components/Support';
 import Footer from '../components/Footer';
 
@@ -41,6 +42,7 @@ export default function Home() {
             <Features />
             <Community />
             <Media />
+            <Sponsors />
             <Support />
             <Footer />
           </div>
