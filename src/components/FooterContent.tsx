@@ -41,7 +41,7 @@ export default function FooterContent() {
       
       {/* 法律声明部分 */}
       <div className="legal-info mb-6">
-        <p className="text-[13px] text-[#a9abad]">法律声明：RA2WEB® 是 RA2WEB LTD 的注册商标，红色井界™ 王二火大™ 网页红井™ 及 &quot;红围巾鸟&quot;卡通形象 和 &quot;战争策略游戏&quot; 徽标 是 RA2WEB LTD 的商标，受法律保护。游戏为非盈利作品，使用部分红色警戒®美术素材，无侵权意图，目前正在逐步替换中。</p>
+        <p className="text-[13px] text-[#a9abad]">法律声明：RA2WEB® 是 RA2WEB LTD 的注册商标，红色井界™ 王二火大™ 网页红井™ 及 &quot;红围巾鸟&quot;卡通形象 和 &quot;战争策略游戏&quot; 徽标 是 RA2WEB LTD 的商标，受法律保护。本页面宣传和游戏中出现的《Red Alert2》相关美术素材为玩家自行下载导入，与 RA2WEB LTD 无关。</p>
         <p className="text-[13px] text-[#a9abad] mt-2">Copyright © {new Date().getFullYear()} RA2WEB</p>
       </div>
       
