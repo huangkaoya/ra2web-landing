@@ -2,6 +2,7 @@ import SubpageLayout from '@/components/SubpageLayout';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ShareBar, { MobileShareBar } from '@/components/ShareBar';
+import NewsTag from '@/components/NewsTag';
 
 const API_BASE = 'https://gongheguozhihui-news-api.huangkaoya.workers.dev/api';
 
@@ -34,9 +35,7 @@ export default async function NewsDetail({ params }: { params: Promise<{ slug: s
       <article className="max-w-4xl mx-auto py-12 px-4 md:px-0">
         <header className="mb-12 border-b border-gray-100 pb-10 text-left">
           <div className="flex flex-col items-start gap-4">
-            <span className="bg-[#ff9408] text-white text-[12px] font-bold px-3 py-1 rounded shadow-sm uppercase tracking-wider mb-2">
-              {post.category || '官方动态'}
-            </span>
+            <NewsTag category={post.category || '公告'} className="text-[12px] px-3 mb-2" />
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight max-w-3xl">
               {post.title}
             </h1>
