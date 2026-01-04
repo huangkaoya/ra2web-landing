@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import NewsTag from './NewsTag';
 
 const API_BASE = '/api';
 
@@ -49,7 +50,7 @@ export default function About() {
             <ul className="inline-flex">
               <li className="inline-block">
                 <button
-                  className={`text-[18px] font-normal px-10 py-3.5 uppercase transition-colors cursor-pointer ${
+                  className={`text-[18px] font-normal px-10 py-3.5 uppercase transition-colors cursor-pointer rounded-none ${
                     activeTab === 'news'
                       ? 'bg-[#ff9408] text-white border border-[#ff9408]'
                       : 'text-[#989898] border border-gray-300 hover:bg-[#ff9408] hover:text-white hover:border-[#ff9408]'
@@ -61,7 +62,7 @@ export default function About() {
               </li>
               <li className="inline-block -ml-[2px]">
                 <button
-                  className={`text-[18px] font-normal px-10 py-3.5 uppercase transition-colors cursor-pointer ${
+                  className={`text-[18px] font-normal px-10 py-3.5 uppercase transition-colors cursor-pointer rounded-none ${
                     activeTab === 'specs'
                       ? 'bg-[#ff9408] text-white border border-[#ff9408]'
                       : 'text-[#989898] border border-gray-300 hover:bg-[#ff9408] hover:text-white hover:border-[#ff9408]'
@@ -76,21 +77,24 @@ export default function About() {
           
           <div className="tab-content pb-16">
             {activeTab === 'news' && (
-              <div className="space-y-8">
+              <div className="space-y-4">
                 {news.length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="flex flex-col border-t border-gray-100">
                     {news.map((item) => (
-                      <Link key={item.id} href={`/news/${item.slug}`} className="group block bg-gray-50 border border-gray-100 rounded-lg overflow-hidden hover:shadow-md transition-all">
-                        <div className="p-5">
-                          <div className="flex justify-between items-center mb-3">
-                            <span className="text-[10px] font-bold uppercase text-[#ff9408] tracking-widest">{item.category || '公告'}</span>
-                            <span className="text-[10px] text-gray-400">{new Date(item.published_at).toLocaleDateString()}</span>
-                          </div>
-                          <h4 className="text-lg font-bold text-black mb-2 line-clamp-2 group-hover:text-[#ff9408] transition-colors">{item.title}</h4>
-                          <p className="text-sm text-gray-500 line-clamp-2 leading-relaxed mb-4">{item.summary}</p>
-                          <span className="text-xs font-bold text-[#ff9408] flex items-center gap-1">
-                            查看详情 →
-                          </span>
+                      <Link 
+                        key={item.id} 
+                        href={`/news/${item.slug}`} 
+                        className="group flex flex-col sm:flex-row sm:items-center justify-between py-4 px-2 border-b border-gray-100 hover:bg-gray-50 transition-all rounded-none"
+                      >
+                        <div className="flex items-center gap-4 flex-1 min-w-0">
+                          <NewsTag category={item.category || '公告'} />
+                          <h4 className="text-base font-bold text-black group-hover:text-[#ff9408] transition-colors truncate">
+                            {item.title}
+                          </h4>
+                        </div>
+                        <div className="flex items-center gap-4 text-xs text-gray-400 mt-2 sm:mt-0 shrink-0">
+                          <span className="font-mono">{new Date(item.published_at).toLocaleDateString()}</span>
+                          <span className="text-[#ff9408] font-bold group-hover:translate-x-1 transition-transform">→</span>
                         </div>
                       </Link>
                     ))}
@@ -104,7 +108,7 @@ export default function About() {
                           alt="游戏大厅" 
                           width={600}
                           height={400}
-                          className="shadow-lg border border-[#ececec] bg-white p-2.5"
+                          className="shadow-lg border border-[#ececec] bg-white p-2.5 rounded-none"
                         />
                       </div>
                     </div>
@@ -117,13 +121,6 @@ export default function About() {
                       </p>
                     </div>
                     <div className="clear-both"></div>
-                  </div>
-                )}
-                {news.length > 0 && (
-                  <div className="text-center pt-4">
-                    <Link href="/news" className="inline-block px-8 py-3 border-2 border-[#ff9408] text-[#ff9408] font-bold uppercase hover:bg-[#ff9408] hover:text-white transition-all">
-                      进入新闻中心
-                    </Link>
                   </div>
                 )}
               </div>

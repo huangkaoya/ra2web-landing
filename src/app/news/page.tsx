@@ -1,5 +1,6 @@
 import SubpageLayout from '@/components/SubpageLayout';
 import Link from 'next/link';
+import NewsTag from '@/components/NewsTag';
 
 const API_BASE = 'https://gongheguozhihui-news-api.huangkaoya.workers.dev/api';
 
@@ -42,18 +43,16 @@ export default async function NewsPage() {
             <Link 
               key={item.id} 
               href={`/news/${item.slug}`}
-              className="flex flex-col md:flex-row md:items-center justify-between py-6 px-4 border-b border-gray-100 hover:bg-gray-50 transition-all group"
+              className="flex flex-col md:flex-row md:items-center justify-between py-4 px-2 border-b border-gray-100 hover:bg-gray-50 transition-all group rounded-none"
             >
               <div className="flex items-center gap-4 flex-1 min-w-0">
-                <span className="shrink-0 bg-[#ff9408]/10 text-[#ff9408] text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider border border-[#ff9408]/20">
-                  {item.category || '公告'}
-                </span>
-                <h3 className="text-xl font-bold text-gray-900 group-hover:text-[#ff9408] transition-colors truncate">
+                <NewsTag category={item.category || '公告'} />
+                <h3 className="text-base font-bold text-gray-900 group-hover:text-[#ff9408] transition-colors truncate">
                   {item.title}
                 </h3>
               </div>
               
-              <div className="flex items-center gap-8 text-sm text-gray-400 mt-3 md:mt-0 shrink-0">
+              <div className="flex items-center gap-8 text-sm text-gray-400 mt-2 md:mt-0 shrink-0">
                 <div className="flex items-center gap-2">
                   <span className="hidden sm:inline italic">作者：{item.author || 'Ra2Web'}</span>
                   <span className="w-1 h-1 bg-gray-300 rounded-full hidden sm:inline"></span>
