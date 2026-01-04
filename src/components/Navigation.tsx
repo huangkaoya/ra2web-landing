@@ -11,7 +11,7 @@ const NAV_ITEMS = [
   { href: '#features', label: '核心特色' },
   { href: '#community', label: '社区' },
   { href: '#media', label: '频道' },
-  { href: '/patch-notes', label: '更新说明', isPageLink: true },
+  { href: '/news', label: '新闻中心', isPageLink: true },
   { href: 'https://game.ra2web.com/', label: '点此开玩！', isExternal: true },
 ];
 

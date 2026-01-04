@@ -1,10 +1,25 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+
+const API_BASE = '/api';
 
 export default function About() {
   const [activeTab, setActiveTab] = useState('news');
+  const [news, setNews] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (activeTab === 'news') {
+      fetch(`${API_BASE}/news?limit=3&tag=ra2web`)
+        .then(res => res.json())
+        .then(data => {
+          if (Array.isArray(data)) setNews(data);
+        })
+        .catch(err => console.error('Fetch news failed', err));
+    }
+  }, [activeTab]);
   
   return (
     <section 
@@ -61,27 +76,56 @@ export default function About() {
           
           <div className="tab-content pb-16">
             {activeTab === 'news' && (
-              <div className="flex flex-col md:flex-row md:space-x-12">
-                <div className="md:w-[43.63%] mb-10 md:mb-0 md:float-left">
-                  <div className="relative ml-0 md:ml-6">
-                    <Image 
-                      src="/img/lobby-main.jpg" 
-                      alt="游戏大厅" 
-                      width={600}
-                      height={400}
-                      className="shadow-lg border border-[#ececec] bg-white p-2.5"
-                    />
+              <div className="space-y-8">
+                {news.length > 0 ? (
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {news.map((item) => (
+                      <Link key={item.id} href={`/news/${item.slug}`} className="group block bg-gray-50 border border-gray-100 rounded-lg overflow-hidden hover:shadow-md transition-all">
+                        <div className="p-5">
+                          <div className="flex justify-between items-center mb-3">
+                            <span className="text-[10px] font-bold uppercase text-[#ff9408] tracking-widest">{item.category || '公告'}</span>
+                            <span className="text-[10px] text-gray-400">{new Date(item.published_at).toLocaleDateString()}</span>
+                          </div>
+                          <h4 className="text-lg font-bold text-black mb-2 line-clamp-2 group-hover:text-[#ff9408] transition-colors">{item.title}</h4>
+                          <p className="text-sm text-gray-500 line-clamp-2 leading-relaxed mb-4">{item.summary}</p>
+                          <span className="text-xs font-bold text-[#ff9408] flex items-center gap-1">
+                            查看详情 →
+                          </span>
+                        </div>
+                      </Link>
+                    ))}
                   </div>
-                </div>
-                <div className="md:w-[54.3%] md:float-right text-left">
-                  <h3 className="text-2xl md:text-[24px] font-bold uppercase text-black leading-7">开发进展<span className="block text-sm font-normal text-[#ff9000] mt-1">持续更新中……</span></h3>
-                  <p className="pt-7 pb-5 text-[#979797] leading-6">当前已经支持联机、单机，游戏地图持续增加中，并支持游玩自定义地图，而且可以免费查看对战录像回放。</p>
-                  <p className="text-[#979797] leading-6">
-                    你可以在 <a href="/patch-notes" className="text-[#ff9408] hover:text-[#ff9408] hover:underline">此处</a> 
-                    查看游戏更新的最新情报，或者微信关注公众号 思牛逼 获取各类周边资讯（包括加速器、攻略、QQ群等）。
-                  </p>
-                </div>
-                <div className="clear-both"></div>
+                ) : (
+                  <div className="flex flex-col md:flex-row md:space-x-12">
+                    <div className="md:w-[43.63%] mb-10 md:mb-0 md:float-left">
+                      <div className="relative ml-0 md:ml-6">
+                        <Image 
+                          src="/img/lobby-main.jpg" 
+                          alt="游戏大厅" 
+                          width={600}
+                          height={400}
+                          className="shadow-lg border border-[#ececec] bg-white p-2.5"
+                        />
+                      </div>
+                    </div>
+                    <div className="md:w-[54.3%] md:float-right text-left">
+                      <h3 className="text-2xl md:text-[24px] font-bold uppercase text-black leading-7">开发进展<span className="block text-sm font-normal text-[#ff9000] mt-1">持续更新中……</span></h3>
+                      <p className="pt-7 pb-5 text-[#979797] leading-6">当前已经支持联机、单机，游戏地图持续增加中，并支持游玩自定义地图，而且可以免费查看对战录像回放。</p>
+                      <p className="text-[#979797] leading-6">
+                        你可以在 <Link href="/news" className="text-[#ff9408] hover:text-[#ff9408] hover:underline">新闻中心</Link> 
+                        查看游戏更新的最新情报，或者微信关注公众号 思牛逼 获取各类周边资讯（包括加速器、攻略、QQ群等）。
+                      </p>
+                    </div>
+                    <div className="clear-both"></div>
+                  </div>
+                )}
+                {news.length > 0 && (
+                  <div className="text-center pt-4">
+                    <Link href="/news" className="inline-block px-8 py-3 border-2 border-[#ff9408] text-[#ff9408] font-bold uppercase hover:bg-[#ff9408] hover:text-white transition-all">
+                      进入新闻中心
+                    </Link>
+                  </div>
+                )}
               </div>
             )}
             
