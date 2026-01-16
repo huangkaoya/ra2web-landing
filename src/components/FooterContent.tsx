@@ -13,12 +13,11 @@ export default function FooterContent() {
   const links: FriendlyLink[] = [
     { name: "盼之游戏交易", url: "https://www.pzds.com/?pzfrom=RWKTDJ", description: "领先的游戏交易代售网站" },
     { name: "共和国之辉", url: "https://www.gongheguozhihui.com", description: "共和国之辉官网" },
-    { name: "红警2重聚未来", url: "https://www.yra2.com", description: "红警2重聚未来官网" },
     { name: "王二火大", url: "https://www.wangerhuoda.com", description: "王二火大官网" },
     { name: "Bun中文网", url: "https://bun.sh.cn", description: "Bun中文网" },
     { name: "狗狗币官网", url: "https://www.dogecoin.com", description: "狗狗币官网" },
-    { name: "心灵终结", url: "https://mentalomega.com", description: "心灵终结官网" },
-    { name: "OpenRA", url: "https://www.openra.net", description: "OpenRA官网" }
+    { name: "OpenRA", url: "https://www.openra.net", description: "OpenRA官网" },
+    { name: "GTA5MOD", url: "https://www.wanjiadongli.com", description: "GTA5MOD" }
   ];
 
   const [isExpanded, setIsExpanded] = useState(false);
