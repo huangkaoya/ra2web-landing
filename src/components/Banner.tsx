@@ -45,7 +45,7 @@ export default function Banner() {
             <p className="text-xl mb-8">是时候体验和重温真正经典的即时战略游戏玩法…… <br /><br />……居然可以直接在您的浏览器！！</p>
             <div className="flex flex-wrap gap-4">
               <a 
-                href="https://www.ra2web.com/" 
+                href="https://game.ra2web.com/" 
                 target="_blank" 
                 rel="nofollow"
                 className="bg-[#ff9000] hover:bg-[#e3860e] text-white font-bold py-3 px-8 text-lg transition-colors duration-300"
