@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>快速匹配天梯规则</title>
+        <link rel="stylesheet" href="css/patch-notes.css" type="text/css" />
+        <style>
+            main > section + section {
+                margin-top: 2em;
+            }
+            .game-settings section {
+                display: flex;
+            }
+            .game-settings table + table {
+                margin-left: 40px;
+            }
+            .game-settings td:first-child {
+                width: 150px;
+            }
+            .ranks table {
+                border-collapse: collapse;
+                border: 1px red solid;
+            }
+            .ranks table thead {
+                border-bottom: 1px red solid;
+            }
+            .ranks table tr:nth-child(2n) {
+                background-color: lightgray;
+            }
+            body.in-iframe .ranks table tr:nth-child(2n) {
+                background-color: rgba(55, 55, 55, .75);
+            }
+            
+            body.in-iframe .ranks table tr:nth-child(2n+1) {
+                background-color: rgba(21, 21, 21, .75);
+            }
+            .ranks table th {
+                vertical-align: top;
+            }
+            .ranks table th,
+            .ranks table td {
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>快速匹配天梯规则</h1>
+        </header>
+        <main>
+            <section>
+                <h2>基本规则</h2>
+                <ul>
+                    <li>完成 5 场定级赛后，将被分入一个最多 100 名实力相近玩家的段位。</li>
+                    <li>获胜可获得天梯积分（LP），用于在段位内提升名次。</li>
+                    <li>获胜还会提升你的 MMR（匹配等级），用于决定你的军衔徽章和段位。</li>
+                    <li>赢得足够场次即可晋升更高军衔。</li>
+                    <li>活跃与不活跃玩家均可获得额外奖励积分（BP），每 100 分钟获得 1 点。</li>
+                    <li>奖励积分可通过对战消耗，使胜利获得的 LP 翻倍，并抵消失败损失的 LP。</li>
+                </ul>
+            </section>
+            <section>
+                <h2>登顶之路</h2>
+                <ul>
+                    <li>段位系统中的最高军衔为准将，授予服务器前约 4% 的玩家。</li>
+                    <li>服务器 MMR 前 50 名玩家可进入专属「将军」天梯，争夺最高荣誉徽章。详见<a href="#ranks">军衔对照表</a>。</li>
+                    <li>要获得晋升将军的资格，玩家需达到最低 MMR，且在本赛季过去 3 周内至少进行 20 场对局。</li>
+                    <li>晋升于服务器时间每晚 22:00 发放。玩家从特殊「候选」天梯中晋升，该天梯包含服务器 MMR 前 100 名符合资格的玩家。</li>
+                    <li>降级于服务器时间每晚 19:00 执行。未达要求的玩家以及排名后约 10% 的玩家将被降至更低段位。符合资格的玩家可在下一轮晋升中重新获得名额。</li>
+                    <li>将军天梯中仅按 MMR 排名，以最准确反映实力。天梯积分与奖励积分不参与计算。</li>
+                    <li>赛季结束前一周，所有天梯晋升将被锁定。在此期间，玩家将专注于在当前段位内争取最佳名次直至赛季结束。</li>
+                </ul>
+            </section>
+            <section class="ranks" id="ranks">
+                <h2>军衔</h2>
+                <section>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>军衔</th>
+                                <th>最低 MMR <br/>1v1 美/欧</th>
+                                <th>最低 MMR <br/>1v1 东南亚</th>
+                                <th>最低 MMR <br/>2v2 美/欧</th>
+                                <th>最低 MMR <br/>2v2 东南亚</th>
+                                <th>占比</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>列兵</td>
+                                <td>&lt;1340</td>
+                                <td>&lt;1330</td>
+                                <td>&lt;1310</td>
+                                <td>&lt;1310</td>
+                                <td>~8%</td>
+                            </tr>
+                            <tr>
+                                <td>下士</td>
+                                <td>1340</td>
+                                <td>1330</td>
+                                <td>1310</td>
+                                <td>1310</td>
+                                <td>~17%</td>
+                            </tr>
+                            <tr>
+                                <td>中士</td>
+                                <td>1420</td>
+                                <td>1430</td>
+                                <td>1410</td>
+                                <td>1410</td>
+                                <td>~17%</td>
+                            </tr>
+                            <tr>
+                                <td>中尉</td>
+                                <td>1480</td>
+                                <td>1500</td>
+                                <td>1470</td>
+                                <td>1470</td>
+                                <td>~20%</td>
+                            </tr>
+                            <tr>
+                                <td>少校</td>
+                                <td>1560</td>
+                                <td>1580</td>
+                                <td>1540</td>
+                                <td>1540</td>
+                                <td>~17%</td>
+                            </tr>
+                            <tr>
+                                <td>上校</td>
+                                <td>1650</td>
+                                <td>1670</td>
+                                <td>1660</td>
+                                <td>1650</td>
+                                <td>~17%</td>
+                            </tr>
+                            <tr>
+                                <td>准将</td>
+                                <td>1880</td>
+                                <td>1890</td>
+                                <td>2040</td>
+                                <td>1950</td>
+                                <td>~4%</td>
+                            </tr>
+                            <tr>
+                                <td>将军</td>
+                                <td>2050</td>
+                                <td>2050</td>
+                                <td>2040</td>
+                                <td>1950</td>
+                                <td>前 50 名</td>
+                            </tr>
+                            <tr>
+                                <td>五星上将</td>
+                                <td>2150</td>
+                                <td>2150</td>
+                                <td>2150</td>
+                                <td>2150</td>
+                                <td>前 5 名</td>
+                            </tr>
+                            <tr>
+                                <td>总司令</td>
+                                <td>2300</td>
+                                <td>2300</td>
+                                <td>2300</td>
+                                <td>2300</td>
+                                <td>第 1 名</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </section>
+            <section>
+                <h2>行为规范</h2>
+                <ul>
+                    <li>禁止任何形式的刷分/交易胜场。故意送分将导致双方被封禁。</li>
+                    <li>允许使用不同昵称进行游戏，但同一人的多个账号不得相互对战。</li>
+                    <li>禁止通过反复取消排队等方式操纵匹配系统。</li>
+                    <li>禁止使用任何作弊手段，违者将被封禁。</li>
+                </ul>
+                <p><em>说明：以上列举并非穷尽。请保持体育精神、公平竞技并尊重其他玩家。</em></p>
+            </section>
+            <section class="game-settings">
+                <h2>游戏设置</h2>
+                <section>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>快速游戏</td>
+                                <td>开</td>
+                            </tr>
+                            <tr>
+                                <td>基地车可重新展开</td>
+                                <td>开</td>
+                            </tr>
+                            <tr>
+                                <td>幸运宝箱</td>
+                                <td>关</td>
+                            </tr>
+                            <tr>
+                                <td>超级武器</td>
+                                <td>开</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <tr>
+                            <td>多工程师才能占领</td>
+                            <td>开</td>
+                        </tr>
+                        <tr>
+                            <td>禁止狗杀工程师</td>
+                            <td>开</td>
+                        </tr>
+                        <tr>
+                            <td>游戏速度</td>
+                            <td>6</td>
+                        </tr>
+                        <tr>
+                            <td>初始资金</td>
+                            <td>10000</td>
+                        </tr>
+                        <tr>
+                            <td>初始单位数量</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+                </section>
+            </section>
+            <section class="map-pool">
+                <h2>地图池</h2>
+                <h3>1v1</h3>
+                <ul>
+                    <li>Heck Freezes Over LE（2-4）</li>
+                    <li>Pinch Point LE（2）</li>
+                    <li>Jungle of Vietnam LE（2-4）</li>
+                    <li>South Pacific（2-4）</li>
+                    <li>Official Tournament Map B（2）<em>— 仅镜像对阵</em></li>
+                    <li>Stormy Weather LE（2）</li>
+                    <li>Malibu Cliffs LE（2）</li>
+                    <li>Tour of Egypt（2-6）<em>— 仅镜像对阵</em></li>
+                    <li>Caverns of Siberia LE（2-4）</li>
+                    <li>Lost Lake（2-4）<em>— 仅镜像对阵</em></li>
+                    <li>Offense Defense（yuri original）（2-4）</li>
+                    <li>Country Swing LE（2-4）<em>— 仅镜像对阵</em></li>
+                    <li>Dorado Descent YR Port（2-4）</li>
+                    <li>Desert Island LE（2-4）</li>
+                    <li>Arabian Oasis（YR Port）（2）</li>
+                    <li>Divide and Conquer（2-4）</li>
+                    <li>Golden State Freeway LE</li>
+                    <li>Poltergeist LE（PreCaptured）（2）</li>
+                    <li>Under Pressure（PreCaptured）（2）</li>
+                    <li>Frozen Fate（YR Port）（2-4）</li>
+                </ul>
+                <h3>2v2</h3>
+                <ul>
+                    <li>Country Swing LE（2-4）</li>
+                    <li>Offense Defense（yuri original）（2-4）</li>
+                    <li>Snowdrop（2-4）</li>
+                    <li>Desert Island LE（2-4）</li>
+                    <li>Heck Freezes Over Corners（2-4）</li>
+                    <li>Tour of Egypt（2-6）</li>
+                    <li>Dorado Descent YR Port（2-4）</li>
+                    <li>Coldest Peak（2-4）</li>
+                    <li>Red Valley（YR Port）（2-4）</li>
+                    <li>Interstellar（2-4）</li>
+                    <li>Dawn of Peril LE（2-4）</li>
+                    <li>South Pacific（2-4）</li>
+                    <li>Dune Patrol Remake（2-4）</li>
+                    <li>Jungle of Vietnam LE（2-4）</li>
+                    <li>Lake Island（2-4）</li>
+                    <li>Caverns of Siberia LE（2-4）</li>
+                    <li>Yin Yang LE（2-4）</li>
+                    <li>Divide and Conquer（2-4）</li>
+                </ul>
+            </section>
+        </main>
+        <script type="text/javascript">
+            if (window.top !== window.self) {
+                document.body.classList.add("in-iframe");
+            }
+        </script>
+</body>
+</html>
