@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Chat Server Patch Notes</title>
+        <link rel="stylesheet" href="css/patch-notes.css" type="text/css" />
+    </head>
+    <body>
+        <header>
+            <h1>Patch Notes</h1>
+            <h2><a href="patch-notes.html">Client</a> | Chat Server</h2>
+            <nav>
+                <select id="version">
+                    <option value="">Jump to version...</option>
+                    <option value="#v0_8_1">v0.8.1</option>
+                    <option value="#v0_8_0">v0.8.0</option>
+                    <option value="#v0_7_0">v0.7.0</option>
+                    <option value="#v0_6_0">v0.6.0</option>
+                    <option value="#v0_5_0">v0.5.0</option>
+                    <option value="#v0_4_6">v0.4.6</option>
+                    <option value="#v0_4_3">v0.4.3</option>
+                    <option value="#v0_4_1">v0.4.1</option>
+                    <option value="#v0_4">v0.4</option>
+                    <option value="#v0_3">v0.3</option>
+                    <option value="#v0_2">v0.2</option>
+                    <option value="#v0_1">v0.1</option>
+                </select>
+            </nav>
+        </header>
+        <main>
+            <section id="v0_8_1">
+                <h2>Version 0.8.1<em>25 February, 2026</em></h2>
+                <ul>
+                    <li>Adjusted MMR calculation for premade 2v2 teams to consider only the highest rated player.</li>
+                </ul>
+            </section>
+            <section id="v0_8_0">
+                <h2>Version 0.8.0<em>17 February, 2026</em></h2>
+                <ul>
+                    <li>Added support for teamed 2v2 matches.</li>
+                </ul>
+            </section>
+            <section id="v0_7_0">
+                <h2>Version 0.7.0<em>1 February, 2026</em></h2>
+                <ul>
+                    <li>Replaced legacy PvPGN file storage with a new SQLite-based storage layer</li>
+                </ul>
+            </section>
+            <section id="v0_6_0">
+                <h2>Version 0.6.0<em>13 August, 2025</em></h2>
+                <ul>
+                    <li>Added /invis command, allowing players to appear invisible to others in multiplayer lobbies</li>
+                </ul>
+            </section>
+            <section id="v0_5_0">
+                <h2>Version 0.5.0<em>28 July, 2025</em></h2>
+                <ul>
+                    <li>Added match history to ladder API</li>
+                </ul>
+            </section>
+            <section id="v0_4_6">
+                <h2>Version 0.4.6<em>20 June, 2025</em></h2>
+                <ul>
+                    <li>Removed bonus pool requirement for top ladder tier eligibility and replaced with minimum number of games played (30 games / 3 weeks for 1v1 and 15 games / 3 weeks for 2v2). NOTE: Games are not counted retroactively.</li>
+                </ul>
+            </section>
+            <section id="v0_4_3">
+                <h2>Version 0.4.3<em>17 April, 2025</em></h2>
+                <ul>
+                    <li>Fixed Generals ladder promotions and demotions not being executed at the scheduled times</li>
+                    <li>Fixed Contenders ladder not being properly populated</li>
+                    <li>List the first 10 ladder divisions for any given season</li>
+                </ul>
+            </section>
+            <section id="v0_4_1">
+                <h2>Version 0.4.1<em>15 April, 2025</em></h2>
+                <ul>
+                    <li>Fixed an issue with the name generation of ladder divisions</li>
+                    <li>Fixed game result not being reported to all clients when a client disconnects prematurely</li>
+                    <li>Fixed /stats command error when client tag is omitted</li>
+                </ul>
+            </section>
+            <section id="v0_4">
+                <h2>Version 0.4<em>15 April, 2025</em></h2>
+                <ul>
+                    <li>Ladder system revamp (see <a href="patch-notes.html#v0_72">client patch notes</a>)</li>
+                    <li>Add 2v2 Random Team queue</li>
+                    <li>Updated ladder API</li>
+                    <li>Newly created accounts are no longer able to upload custom maps, nor speak in public games</li>
+                    <li>Fixed a rare race condition causing newly created accounts to be corrupted</li>
+                </ul>
+            </section>
+            <section id="v0_3">
+                <h2>Version 0.3<em>1 December, 2024</em></h2>
+                <ul>
+                    <li>
+                        <h3>New ladder ranking system</h3>
+                        <ul>
+                            <li>
+                                <h4>Bonus Pool</h4>
+                                <ul>
+                                    <li>Players accrue points into a separate reservoir called Bonus Pool</li>
+                                    <li>After each match, points are taken from this pool to increase the amount of Ladder Points awarded for a win, or to absorb Ladder Points lost for a defeat</li>
+                                    <li>Up to 2 points can be spent from the Bonus Pool per match, but not more than the base amount of Ladder Points won or lost for that game</li>
+                                    <li>Bonus Pool accrues at a fixed rate, whether playing or not</li>
+                                    <li>Bonus Pool is currently capped at 20 points, which is equivalent to 1 week worth of points</li>
+                                    <li>Players are encouraged to play at least 10 games per week, if they wish to maximize their Ladder Points and maintain a high rank on the ladder</li>
+                                </ul>
+                            </li>
+                            <li>Players receive their initial rank after completing 5 placement matches, or 1 match if they completed placement during the previous season</li>
+                            <li>MMR is reset after a full season of inactivity</li>
+                            <li>Ladder Points are now computed from MMR, offset by points earned from the Bonus Pool</li>
+                            <li>Rank badges are awarded based on Ladder Point brackets, determined by the MMR distribution in each respective region at the end of the previous season</li>
+                            <li>Ranked and unranked queues are now separate for players above 1750 MMR</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section id="v0_2">
+                <h2>Version 0.2<em>29 October, 2024</em></h2>
+                <ul>
+                    <li>
+                        <h3>Multiple game servers per region</h4>
+                        <ul>
+                            <li>Each region now has several game servers linked to a single chat and ladder server:
+                                <ul>
+                                    <li>Americas & Europe: US1 (East Coast) and EU1 (West)</li>
+                                    <li>South-East Asia: SEA1 (Singapore) and SEA2 (Hong Kong)</li>
+                                </ul>
+                            </li>
+                            <li>Game servers are selected automatically to optimize latency for all players in a game instance and balance server load</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3>Quick Match Rework</h4>
+                        <ul>
+                            <li>Information about matched players is no longer exposed to clients, preventing queue dodging</li>
+                            <li>Added a hidden MMR for matchmaking purposes, based on the ELO system, persisted across ladder seasons</li>
+                            <li>MMR volatility is adjusted based on the number of played games and the MMR bracket/range</li>
+                            <li>Matchmaking algorithm update to match players based on their MMR range. If no match can be made, the MMR search range is periodically increased until a match is found. If this also fails, players are eventually matched regardless of their MMR.</li>
+                            <li>Added unranked 1v1 mode. Players queueing for ranked or unranked games share the same queue, but they have a separate MMR for each game mode. The initial MMR is seeded from the other game mode, if any games were played.</li>
+                        </ul>
+                    </li>
+                    <li>Replaced the obsolete Westwood password hashing algorithm (8 character only) with a secure PBKDF2 function. The password will be rehashed transparently on first login. Changing the password via /chpass is also advised.</li>
+                    <li>Increased password strength requirements for new accounts.</li>
+                    <li>Adjusted ranking system to break ties in ladder points by win/loss ratio</li>
+                    <li>Number of played games per account is now persisted across ladder seasons.</li>
+                </ul>
+            </section>
+            <section id="v0_1">
+                <h2>Version 0.1<em>4 September, 2024</em></h2>
+                <ul>
+                    <li>Initial beta release, aiming for feature parity with PvPGN</li>
+                    <li>Supports most PvPGN features, with the exception of a few slash commands (e.g. /clan /friends /(un)watch(all) /mail)</li>
+                    <li>More detailed output for several slash commands</li>
+                    <li>Supports sending slash commands in-game</li>
+                    <li>Full localization and UTF-8 support (looking for translators)</li>
+                </ul>
+            </section>
+        </main>
+        <script type="text/javascript">
+            if (window.top !== window.self) {
+                document.body.classList.add("in-iframe");
+            }
+            document.getElementById("version").addEventListener("change", function() {
+                if (this.value) {
+                    window.location.href = this.value;
+                    this.selectedIndex = 0;
+                }
+            });
+        </script>
+    </body>
+</html>
