@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+body.in-iframe{
+    color: white;
+    background: rgba(0, 0, 0, .25);
+    margin: 30px;
+}
+body.in-iframe::-webkit-scrollbar {
+    width: 19px;
+    height: 18px;
+}
+body.in-iframe::-webkit-scrollbar,
+body.in-iframe::-webkit-scrollbar-button:vertical,
+body.in-iframe::-webkit-scrollbar-thumb:vertical {
+    border-left: 1px red solid;
+    border-right: 1px red solid;
+}
+body.in-iframe::-webkit-scrollbar-button:vertical,
+body.in-iframe::-webkit-scrollbar-thumb:vertical {
+    background-image: url(../img/icons24.png);
+}
+body.in-iframe::-webkit-scrollbar-thumb:vertical {
+    border-top: 1px solid #a20000;
+    border-bottom: 1px solid #a20000;
+}
+body.in-iframe::-webkit-scrollbar-button:vertical:increment {
+    background-position: -96px 0;
+    width: 18px;
+    height: 22px;
+}
+body.in-iframe::-webkit-scrollbar-button:vertical:increment:hover {
+    background-position: -120px 0;
+}
+body.in-iframe::-webkit-scrollbar-button:vertical:decrement {
+    background-position: -144px 0;
+    width: 18px;
+    height: 22px;
+}
+body.in-iframe::-webkit-scrollbar-button:vertical:decrement:hover {
+    background-position: -168px 0;
+}
+body.in-iframe::-webkit-scrollbar-thumb:vertical {
+    background-position: -216px 0;
+    background-repeat: repeat-y;
+}
+a {
+    color: red;
+}
+main > section + section {
+    margin-top: 3em;
+}
+main ul {
+    padding-inline-start: 20px;
+}
+main li {
+    margin: 0.2em 0;
+}
+h2 > em {
+    display: block;
+    color: gray;
+    font-size: 13px;
+}
+li > h4 {
+    margin: 0;
+    font-weight: normal;
+}
