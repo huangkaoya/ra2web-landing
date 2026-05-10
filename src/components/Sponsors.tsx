@@ -6,11 +6,11 @@ export default function Sponsors() {
   return (
     <section 
       id="sponsors" 
-      className="py-16 bg-white text-gray-800"
+      className="py-16 bg-[#081522] text-[#e8f1f8]"
     >
       <div className="container mx-auto px-4 max-w-[1100px]">
         <h2 className="text-4xl md:text-[50px] font-normal uppercase font-['Oswald',sans-serif] leading-[60px] text-center mb-8">赞助与合作</h2>
-        <p className="text-center max-w-2xl mx-auto mb-8 text-gray-600">
+        <p className="text-center max-w-2xl mx-auto mb-8 text-[#b9c7d4]">
           感谢以下伙伴对红色井界™的支持与合作
         </p>
         <div className="w-64 h-[2px] bg-[#ff9408] mx-auto mb-12"></div>
@@ -24,7 +24,7 @@ export default function Sponsors() {
                 href="https://www.pzds.com/?pzfrom=RWKTDJ" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="sponsor-logo block transition-transform hover:scale-105 duration-300"
+                className="sponsor-logo block transition-transform hover:scale-105 duration-300 bg-white/95 border border-[#274763] p-4 shadow-[0_18px_40px_rgba(0,0,0,0.28)]"
               >
                 <Image 
                   src="/logo2-2.png" 
