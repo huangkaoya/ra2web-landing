@@ -24,3 +24,43 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes donor-scroll {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(var(--donor-scroll-distance, -220px));
+  }
+}
+
+.donor-scroll-track {
+  animation: donor-scroll var(--donor-scroll-duration, 18s) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .donor-scroll-track {
+    animation: none;
+  }
+}
+
+@keyframes sponsor-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(var(--sponsor-marquee-distance, -50%));
+  }
+}
+
+.sponsor-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: sponsor-marquee var(--sponsor-marquee-duration, 24s) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sponsor-marquee-track {
+    animation: none;
+  }
+}

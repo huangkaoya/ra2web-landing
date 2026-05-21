@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
+import DonorList from './DonorList';
 
 interface CryptoModalProps {
   currency: string;
@@ -150,6 +151,8 @@ export default function Support() {
             onClose={() => setShowModal(false)} 
           />
         )}
+
+        <DonorList />
       </div>
     </section>
   );
