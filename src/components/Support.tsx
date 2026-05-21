@@ -28,16 +28,23 @@ const CryptoModal = ({ currency, address, onClose }: CryptoModalProps) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4" onClick={onClose}>
-      <div className="bg-white p-6 rounded-lg max-w-md w-full text-center" onClick={(e) => e.stopPropagation()}>
-        <div className="text-xl font-semibold mb-4">{currencyNames[currency]}地址，请仔细核对</div>
+      <div
+        className="bg-white p-6 rounded-lg max-w-md w-full text-center text-[#171717]"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="text-xl font-semibold mb-4 text-[#171717]">
+          {currencyNames[currency]}地址，请仔细核对
+        </div>
         
         <div className="mb-4 flex justify-center">
-          <div id="qrcode" className="w-48 h-48 bg-white p-2 border border-gray-300 flex items-center justify-center">
+          <div id="qrcode" className="w-48 h-48 bg-white p-2 border border-[#c5c5c5] flex items-center justify-center">
             {address && <QRCodeSVG value={address} size={176} />}
           </div>
         </div>
         
-        <div className="break-all text-sm mb-4 bg-gray-100 p-3 rounded">{address}</div>
+        <div className="break-all text-sm mb-4 bg-[#f0f0f0] p-3 rounded text-[#1a1a1a] font-mono leading-relaxed border border-[#d0d0d0]">
+          {address}
+        </div>
         
         <button 
           className="bg-[#ff9408] hover:bg-[#fda93c] text-white font-semibold py-2 px-4 rounded transition-colors"
