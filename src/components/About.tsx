@@ -5,15 +5,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import NewsTag from './NewsTag';
 
-const API_BASE = '/api';
-
 export default function About() {
   const [activeTab, setActiveTab] = useState('news');
   const [news, setNews] = useState<any[]>([]);
 
   useEffect(() => {
     if (activeTab === 'news') {
-      fetch(`${API_BASE}/news?limit=3&tag=ra2web`)
+      fetch(`/api/news?limit=3`)
         .then(res => res.json())
         .then(data => {
           if (Array.isArray(data)) setNews(data);
