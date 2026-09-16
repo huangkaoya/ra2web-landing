@@ -53,7 +53,7 @@ export default function Banner() {
                 立即开始
               </a>
               <a 
-                href="https://staging.wangerhuoda.cn/"
+                href="https://gonghui.k0s.cn/"
                 target="_blank" 
                 rel="nofollow"
                 className="border border-white hover:border-[#ff9000] hover:text-[#ff9000] text-white font-bold py-3 px-8 text-lg transition-colors duration-300"
