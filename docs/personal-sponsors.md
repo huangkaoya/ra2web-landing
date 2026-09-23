@@ -15,7 +15,8 @@
 | --- | --- | --- |
 | `id` | 是 | 唯一 ID，建议 `ps-YYYYMMDD-序号` |
 | `name` | 是 | 赞助者姓名或昵称 |
-| `deed` | 是 | 事迹简述（如捐赠方式与金额） |
+| `deed` | 是 | 事迹简述（如捐赠方式与金额），中文界面使用 |
+| `deedEn` | 否 | 英文事迹。英文界面优先展示；缺省时回退到 `deed` |
 | `published` | 否 | `false` 时前端不展示 |
 
 类型定义见 [`src/types/personal-sponsor.ts`](../src/types/personal-sponsor.ts)。
@@ -27,6 +28,7 @@
   "id": "ps-20260521-001",
   "name": "提莫",
   "deed": "通过支付宝捐赠1000元",
+  "deedEn": "Donated CNY 1,000 via Alipay",
   "published": true
 }
 ```

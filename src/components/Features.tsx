@@ -1,38 +1,21 @@
 "use client";
 
 import Image from 'next/image';
+import { useI18n } from '@/i18n/LocaleProvider';
+
+const FEATURE_META = [
+  { id: "Card1", accent: "#3aa4d8", iconUrl: "/img/xplatform-icn.png" },
+  { id: "Card2", accent: "#ff9408", iconUrl: "/img/network-icn.png" },
+  { id: "Card3", accent: "#c04a3b", iconUrl: "/img/modern-icn.png" },
+  { id: "Card4", accent: "#8ea0ad", iconUrl: "/img/mod-icn.png" },
+];
 
 export default function Features() {
-  const featureItems = [
-    {
-      id: "Card1",
-      title: "跨平台",
-      description: "几乎在所有的设备上游玩，包括经典的个人电脑、笔记本、MAC、Iphone、安卓手机，甚至电冰箱或者小天才电话手表😂",
-      accent: "#3aa4d8",
-      iconUrl: "/img/xplatform-icn.png"
-    },
-    {
-      id: "Card2",
-      title: "B-S架构",
-      description: "并非局域网联机意味着你可以和全球玩家在线切磋，使用HTTP访问意味着不再有古早即时战略类游戏打联机需要额外的防火墙配置这一场景！",
-      accent: "#ff9408",
-      iconUrl: "/img/network-icn.png"
-    },
-    {
-      id: "Card3",
-      title: "现代操作体验",
-      description: "在电脑端打开可以体验经典的键盘+鼠标操作，而转到移动端则会自动切换到触摸+按钮+摇杆操作，一套实现，妙不可言。",
-      accent: "#c04a3b",
-      iconUrl: "/img/modern-icn.png"
-    },
-    {
-      id: "Card4",
-      title: "支持外设API和MOD",
-      description: "无论是想开发属于自己的摇杆和快捷面板来增强操控体验，还是开发类似\"共和国之辉\"这样风靡华人的经典MOD提升游戏乐趣，都可行且易于上手！",
-      accent: "#8ea0ad",
-      iconUrl: "/img/mod-icn.png"
-    }
-  ];
+  const { m } = useI18n();
+  const featureItems = FEATURE_META.map((meta, index) => ({
+    ...meta,
+    ...m.features.items[index],
+  }));
 
   return (
     <section 
@@ -42,7 +25,7 @@ export default function Features() {
     >
       <div className="absolute inset-0 bg-[#06111d]/25"></div>
       <div className="container relative mx-auto px-4 max-w-[1100px]">
-        <h2 className="text-4xl md:text-[50px] font-normal uppercase font-['Oswald',sans-serif] leading-[60px] text-center mb-8">核心特色</h2>
+        <h2 className="text-4xl md:text-[50px] font-normal uppercase font-['Oswald',sans-serif] leading-[60px] text-center mb-8">{m.features.title}</h2>
         <div className="w-64 h-[2px] bg-[#ff9408] mx-auto mb-12"></div>
         
         <div className="Featureside pt-12 pb-4 w-full">

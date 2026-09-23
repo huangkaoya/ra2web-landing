@@ -1,4 +1,7 @@
+'use client';
+
 import React from 'react';
+import { useI18n } from '@/i18n/LocaleProvider';
 
 type TagType = '百科' | '新闻' | '公告' | '活动' | string;
 
@@ -16,11 +19,14 @@ const tagStyles: Record<string, string> = {
 };
 
 export default function NewsTag({ category, className = "" }: TagProps) {
+  const { m } = useI18n();
   const style = tagStyles[category] || tagStyles['default'];
+  const known = m.news.categories[category as keyof typeof m.news.categories];
+  const label = known || category;
   
   return (
     <span className={`shrink-0 text-[10px] font-bold uppercase px-2 py-1 rounded-none border leading-none tracking-wider ${style} ${className}`}>
-      {category}
+      {label}
     </span>
   );
 }

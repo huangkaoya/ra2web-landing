@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { LocaleProvider } from "@/i18n/LocaleProvider";
+import { getLocale } from "@/i18n/get-locale";
+import { getMessages } from "@/i18n/messages";
+import { htmlLang } from "@/i18n/format";
+import { LOCALE_BOOTSTRAP } from "@/i18n/cookie";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,27 +17,52 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "红色井界-全平台即时战略爽游",
-  description: "非官方的红色警戒2重制版，用前端技术完全重构，支持浏览器直接打开随时随地畅玩，和全球玩家实时对战，或者爆锤电脑AI",
-  keywords: "红色警戒下载, 如何玩红警, webra2, 苹果如何玩红警, 平板上如何玩红警, 手机上如何玩红警, 红警, 红警2, 红色警戒2, 网页红警",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const meta = getMessages(locale).meta;
+  const alternateLocale = locale === "zh" ? "en_US" : "zh_CN";
 
-export default function RootLayout({
+  return {
+    title: meta.title,
+    description: meta.description,
+    keywords: meta.keywords,
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      locale: meta.ogLocale,
+      alternateLocale: [alternateLocale],
+      siteName: "ra2web",
+      type: "website",
+    },
+    twitter: {
+      card: "summary",
+      title: meta.title,
+      description: meta.description,
+    },
+  };
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = getMessages(locale);
+
   return (
-    <html lang="zh-CN">
+    <html lang={htmlLang(locale)} suppressHydrationWarning>
       <head>
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <script dangerouslySetInnerHTML={{ __html: LOCALE_BOOTSTRAP }} />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <LocaleProvider locale={locale} messages={messages}>
+          {children}
+        </LocaleProvider>
       </body>
     </html>
   );

@@ -2,8 +2,11 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { useI18n } from '@/i18n/LocaleProvider';
+import { fill } from '@/i18n/format';
 
 export default function Media() {
+  const { m } = useI18n();
   const [activeImg, setActiveImg] = useState<string | null>(null);
   
   const screenshots = [
@@ -22,7 +25,7 @@ export default function Media() {
       style={{ backgroundImage: 'url("/img/Features-bg.jpg")' }}
     >
       <div className="container mx-auto px-4 max-w-[1100px]">
-        <h2 className="text-4xl md:text-[50px] font-normal uppercase font-['Oswald',sans-serif] leading-[60px] text-center mb-8">频道</h2>
+        <h2 className="text-4xl md:text-[50px] font-normal uppercase font-['Oswald',sans-serif] leading-[60px] text-center mb-8">{m.media.title}</h2>
         <div className="w-64 h-[2px] bg-[#ff9408] mx-auto mb-12"></div>
         
         {/* Video Section */}
@@ -51,7 +54,7 @@ export default function Media() {
                 >
                   <Image 
                     src={screenshot.thumb} 
-                    alt={`游戏截图 ${index + 1}`} 
+                    alt={fill(m.media.screenshot, { n: index + 1 })} 
                     width={400}
                     height={225}
                     className="w-full h-auto block"
@@ -71,6 +74,7 @@ export default function Media() {
             <button 
               className="absolute top-4 right-4 text-white hover:text-[#ff9408] transition-colors"
               onClick={() => setActiveImg(null)}
+              aria-label={m.media.close}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -80,7 +84,7 @@ export default function Media() {
               <div className="border border-[#2d4a66]">
                 <Image 
                   src={activeImg} 
-                  alt="游戏截图大图" 
+                  alt={m.media.screenshotFull} 
                   width={1200}
                   height={675}
                   className="max-w-full max-h-[80vh] object-contain block"

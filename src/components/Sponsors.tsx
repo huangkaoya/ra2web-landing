@@ -3,22 +3,26 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import Image from 'next/image';
 import type { PersonalSponsorRecord, PersonalSponsorsFile } from '@/types/personal-sponsor';
+import { useI18n } from '@/i18n/LocaleProvider';
+import type { Locale } from '@/i18n/types';
 
 const SPONSOR_SEPARATOR = '　　｜　　';
 
-function formatSponsorLine(sponsor: PersonalSponsorRecord): string {
-  return `${sponsor.name}（${sponsor.deed}）`;
+function formatSponsorLine(sponsor: PersonalSponsorRecord, locale: Locale): string {
+  const deed = locale === 'en' && sponsor.deedEn?.trim() ? sponsor.deedEn.trim() : sponsor.deed;
+  return locale === 'en' ? `${sponsor.name} (${deed})` : `${sponsor.name}（${deed}）`;
 }
 
 function PersonalSponsorList({ sponsors }: { sponsors: PersonalSponsorRecord[] }) {
+  const { locale } = useI18n();
   const containerRef = useRef<HTMLDivElement>(null);
   const measureRef = useRef<HTMLSpanElement>(null);
   const [shouldMarquee, setShouldMarquee] = useState(false);
   const [paused, setPaused] = useState(false);
 
   const lineText = useMemo(
-    () => sponsors.map(formatSponsorLine).join(SPONSOR_SEPARATOR),
-    [sponsors]
+    () => sponsors.map((sponsor) => formatSponsorLine(sponsor, locale)).join(SPONSOR_SEPARATOR),
+    [sponsors, locale]
   );
 
   useEffect(() => {
@@ -74,6 +78,7 @@ function PersonalSponsorList({ sponsors }: { sponsors: PersonalSponsorRecord[] }
 }
 
 export default function Sponsors() {
+  const { m } = useI18n();
   const [personalSponsors, setPersonalSponsors] = useState<PersonalSponsorRecord[]>([]);
   const [personalLoadState, setPersonalLoadState] = useState<'loading' | 'ready' | 'error'>('loading');
 
@@ -100,15 +105,15 @@ export default function Sponsors() {
       className="py-16 bg-[#081522] text-[#e8f1f8]"
     >
       <div className="container mx-auto px-4 max-w-[1100px]">
-        <h2 className="text-4xl md:text-[50px] font-normal uppercase font-['Oswald',sans-serif] leading-[60px] text-center mb-8">赞助与合作</h2>
+        <h2 className="text-4xl md:text-[50px] font-normal uppercase font-['Oswald',sans-serif] leading-[60px] text-center mb-8">{m.sponsors.title}</h2>
         <p className="text-center max-w-2xl mx-auto mb-8 text-[#b9c7d4]">
-          感谢以下伙伴对红色井界™的支持与合作
+          {m.sponsors.intro}
         </p>
         <div className="w-64 h-[2px] bg-[#ff9408] mx-auto mb-12"></div>
         
         <div className="sponsors-content">
           <div className="sponsor-tier mb-12">
-            <h3 className="text-2xl font-semibold text-center mb-6 text-[#ff9408]">金牌赞助商</h3>
+            <h3 className="text-2xl font-semibold text-center mb-6 text-[#ff9408]">{m.sponsors.gold}</h3>
             <div className="flex justify-center items-center">
               <a 
                 href="https://www.pzds.com/?pzfrom=RWKTDJ" 
@@ -118,7 +123,7 @@ export default function Sponsors() {
               >
                 <Image 
                   src="/logo2-2.png" 
-                  alt="金牌赞助商" 
+                  alt={m.sponsors.goldAlt} 
                   width={300}
                   height={150}
                   className="max-w-full h-auto"
@@ -129,12 +134,12 @@ export default function Sponsors() {
           </div>
 
           <div className="sponsor-tier">
-            <h3 className="text-2xl font-semibold text-center mb-6 text-[#ff9408]">个人赞助</h3>
+            <h3 className="text-2xl font-semibold text-center mb-6 text-[#ff9408]">{m.sponsors.personal}</h3>
             {personalLoadState === 'loading' && (
-              <p className="text-center text-[#9eb1c3] text-sm">加载中…</p>
+              <p className="text-center text-[#9eb1c3] text-sm">{m.sponsors.loading}</p>
             )}
             {personalLoadState === 'ready' && personalSponsors.length === 0 && (
-              <p className="text-center text-[#9eb1c3] text-sm">暂无个人赞助记录</p>
+              <p className="text-center text-[#9eb1c3] text-sm">{m.sponsors.empty}</p>
             )}
             {personalLoadState === 'ready' && personalSponsors.length > 0 && (
               <PersonalSponsorList sponsors={personalSponsors} />
