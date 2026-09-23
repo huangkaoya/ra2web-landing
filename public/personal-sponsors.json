@@ -6,12 +6,14 @@
       "id": "ps-20260521-001",
       "name": "提莫",
       "deed": "通过支付宝捐赠1000元",
+      "deedEn": "Donated CNY 1,000 via Alipay",
       "published": true
     },
     {
       "id": "ps-20260521-002",
       "name": "新手从天而降",
       "deed": "通过支付宝捐赠600元",
+      "deedEn": "Donated CNY 600 via Alipay",
       "published": true
     }
   ]

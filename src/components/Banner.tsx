@@ -2,26 +2,22 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { useI18n } from '@/i18n/LocaleProvider';
+import { fill } from '@/i18n/format';
+
+const SLIDE_IMAGES = [
+  "/img/Slider-img1b.jpg",
+  "/img/Slider-img3b.jpg",
+  "/img/Slider-img2b.jpg",
+];
 
 export default function Banner() {
+  const { m } = useI18n();
   const [currentSlide, setCurrentSlide] = useState(0);
-  const slides = [
-    {
-      image: "/img/Slider-img1b.jpg",
-      title: "激烈跨海苏盟对决",
-      subtitle: "对战实况展示"
-    },
-    {
-      image: "/img/Slider-img3b.jpg",
-      title: "安卓平板上畅玩",
-      subtitle: "移动端演示（图为摇杆高速移动地图中所以会有重影）"
-    },
-    {
-      image: "/img/Slider-img2b.jpg",
-      title: "击败敌人！",
-      subtitle: "对战实况展示"
-    }
-  ];
+  const slides = m.banner.slides.map((slide, index) => ({
+    image: SLIDE_IMAGES[index],
+    ...slide,
+  }));
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -41,8 +37,8 @@ export default function Banner() {
         <div className="flex flex-col lg:flex-row items-center">
           {/* Left Side - Welcome Text */}
           <div className="lg:w-2/5 mb-8 lg:mb-0 lg:pr-8">
-            <h3 className="text-5xl font-bold mb-6">欢迎回来, <br></br><span className="text-[#ff9000]">指挥官！</span></h3>
-            <p className="text-xl mb-8">是时候体验和重温真正经典的即时战略游戏玩法…… <br /><br />……居然可以直接在您的浏览器！！</p>
+            <h3 className="text-5xl font-bold mb-6">{m.banner.welcome} <br></br><span className="text-[#ff9000]">{m.banner.commander}</span></h3>
+            <p className="text-xl mb-8">{m.banner.line1} <br /><br />{m.banner.line2}</p>
             <div className="flex flex-wrap gap-4">
               <a 
                 href="https://game.ra2web.com/" 
@@ -50,7 +46,7 @@ export default function Banner() {
                 rel="nofollow"
                 className="bg-[#ff9000] hover:bg-[#e3860e] text-white font-bold py-3 px-8 text-lg transition-colors duration-300"
               >
-                立即开始
+                {m.banner.playNow}
               </a>
               <a 
                 href="https://gonghui.k0s.cn/"
@@ -58,7 +54,7 @@ export default function Banner() {
                 rel="nofollow"
                 className="border border-white hover:border-[#ff9000] hover:text-[#ff9000] text-white font-bold py-3 px-8 text-lg transition-colors duration-300"
               >
-                稳定服
+                {m.banner.stable}
               </a>
             </div>
           </div>
@@ -91,7 +87,7 @@ export default function Banner() {
                   key={index}
                   onClick={() => setCurrentSlide(index)}
                   className={`w-4 h-4 rounded-full transition-colors duration-300 ${index === currentSlide ? 'bg-[#ff9000]' : 'bg-gray-400'}`}
-                  aria-label={`Go to slide ${index + 1}`}
+                  aria-label={fill(m.banner.goToSlide, { n: index + 1 })}
                 />
               ))}
             </div>

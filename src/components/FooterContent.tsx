@@ -1,46 +1,48 @@
 "use client";
 
 import { useState } from 'react';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useI18n } from '@/i18n/LocaleProvider';
 
-interface FriendlyLink {
-  name: string;
-  url: string;
-  description?: string;
-}
+const LINK_URLS = [
+  "https://www.pzds.com/?pzfrom=RWKTDJ",
+  "https://www.gongheguozhihui.com",
+  "https://www.wangerhuoda.com",
+  "https://bun.sh.cn",
+  "https://www.dogecoin.com",
+  "https://www.openra.net",
+  "https://www.wanjiadongli.com",
+];
 
 export default function FooterContent() {
-  // 友情链接数据
-  const links: FriendlyLink[] = [
-    { name: "盼之游戏交易", url: "https://www.pzds.com/?pzfrom=RWKTDJ", description: "领先的游戏交易代售网站" },
-    { name: "共和国之辉", url: "https://www.gongheguozhihui.com", description: "共和国之辉官网" },
-    { name: "王二火大", url: "https://www.wangerhuoda.com", description: "王二火大官网" },
-    { name: "Bun中文网", url: "https://bun.sh.cn", description: "Bun中文网" },
-    { name: "狗狗币官网", url: "https://www.dogecoin.com", description: "狗狗币官网" },
-    { name: "OpenRA", url: "https://www.openra.net", description: "OpenRA官网" },
-    { name: "GTA5MOD", url: "https://www.wanjiadongli.com", description: "GTA5MOD" }
-  ];
+  const { m } = useI18n();
+  const links = m.footer.links.map((link, index) => ({
+    ...link,
+    url: LINK_URLS[index],
+  }));
 
   const [isExpanded, setIsExpanded] = useState(false);
   const displayedLinks = isExpanded ? links : links.slice(0, 4);
 
   return (
     <div className="max-w-[1100px] mx-auto px-4 py-7">
-      {/* 政策链接部分 */}
+      <div className="flex justify-center mb-4">
+        <LanguageSwitcher />
+      </div>
       <div className="policy-links mb-4">
         <p className="text-[#a9abad] text-[13px] flex items-center justify-center flex-wrap gap-1">
-          <a href="/privacy" className="text-[#a9abad] hover:text-white no-underline px-2" rel="nofollow">隐私政策</a> 
+          <a href="/privacy" className="text-[#a9abad] hover:text-white no-underline px-2" rel="nofollow">{m.footer.privacy}</a> 
           <span className="text-[#a9abad]">|</span>
-          <a href="/cookies" className="text-[#a9abad] hover:text-white no-underline px-2" rel="nofollow">Cookie政策</a> 
+          <a href="/cookies" className="text-[#a9abad] hover:text-white no-underline px-2" rel="nofollow">{m.footer.cookies}</a> 
           <span className="text-[#a9abad]">|</span>
-          <a href="/tos" className="text-[#a9abad] hover:text-white no-underline px-2" rel="nofollow">服务条款</a> 
+          <a href="/tos" className="text-[#a9abad] hover:text-white no-underline px-2" rel="nofollow">{m.footer.tos}</a> 
           <span className="text-[#a9abad]">|</span>
-          <a href="mailto:contact@chronodivide.com" className="text-[#a9abad] hover:text-white no-underline px-2" rel="nofollow">联系我们</a>
+          <a href="mailto:contact@chronodivide.com" className="text-[#a9abad] hover:text-white no-underline px-2" rel="nofollow">{m.footer.contact}</a>
         </p>
       </div>
       
-      {/* 法律声明部分 */}
       <div className="legal-info mb-6">
-        <p className="text-[13px] text-[#a9abad]">法律声明：RA2WEB® 是 RA2WEB LTD 的注册商标，红色井界™ 王二火大™ 网页红井™ 及 &quot;红围巾鸟&quot;卡通形象 和 &quot;战争策略游戏&quot; 徽标 是 RA2WEB LTD 的商标，受法律保护。本页面宣传和游戏中出现的《Red Alert2》相关美术素材为玩家自行下载导入，与 RA2WEB LTD 无关。</p>
+        <p className="text-[13px] text-[#a9abad]">{m.footer.legal}</p>
         <p className="text-[13px] text-[#a9abad] mt-2">Copyright © {new Date().getFullYear()} RA2WEB</p>
       </div>
       
@@ -48,7 +50,7 @@ export default function FooterContent() {
       <div className="friendly-links border-t border-[#444444] pt-6">
         <div className="flex items-center justify-center mb-4">
           <div className="w-16 h-[1px] bg-[#444444]"></div>
-          <h3 className="text-[15px] uppercase text-[#888888] font-semibold mx-4">友情链接</h3>
+          <h3 className="text-[15px] uppercase text-[#888888] font-semibold mx-4">{m.footer.linksTitle}</h3>
           <div className="w-16 h-[1px] bg-[#444444]"></div>
         </div>
         
@@ -77,7 +79,7 @@ export default function FooterContent() {
             onClick={() => setIsExpanded(!isExpanded)} 
             className="text-[#a9abad] hover:text-white text-xs border border-[#444444] rounded-full px-3 py-1 hover:border-[#666666] transition-colors"
           >
-            {isExpanded ? '收起' : '更多链接'}
+            {isExpanded ? m.footer.less : m.footer.more}
           </button>
         )}
       </div>

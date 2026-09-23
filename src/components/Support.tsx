@@ -3,6 +3,10 @@
 import { useState, useEffect } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import DonorList from './DonorList';
+import { useI18n } from '@/i18n/LocaleProvider';
+import BrandText from '@/i18n/BrandText';
+import { fill } from '@/i18n/format';
+import type { Messages } from '@/i18n/types';
 
 interface CryptoModalProps {
   currency: string;
@@ -11,18 +15,15 @@ interface CryptoModalProps {
 }
 
 const CryptoModal = ({ currency, address, onClose }: CryptoModalProps) => {
-  const [buttonText, setButtonText] = useState('复制地址');
-  const currencyNames: {[key: string]: string} = {
-    'btc': '比特币',
-    'eth': '以太坊',
-    'doge': '狗狗币'
-  };
+  const { m } = useI18n();
+  const [copied, setCopied] = useState(false);
+  const currencyName = m.support.currencies[currency as keyof Messages['support']['currencies']] ?? currency;
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(address);
-    setButtonText('地址已复制！');
+    setCopied(true);
     setTimeout(() => {
-      setButtonText('复制地址');
+      setCopied(false);
     }, 3000);
   };
 
@@ -33,7 +34,7 @@ const CryptoModal = ({ currency, address, onClose }: CryptoModalProps) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="text-xl font-semibold mb-4 text-[#171717]">
-          {currencyNames[currency]}地址，请仔细核对
+          {fill(m.support.addressHint, { name: currencyName })}
         </div>
         
         <div className="mb-4 flex justify-center">
@@ -50,7 +51,7 @@ const CryptoModal = ({ currency, address, onClose }: CryptoModalProps) => {
           className="bg-[#ff9408] hover:bg-[#fda93c] text-white font-semibold py-2 px-4 rounded transition-colors"
           onClick={copyToClipboard}
         >
-          {buttonText}
+          {copied ? m.support.copied : m.support.copy}
         </button>
       </div>
     </div>
@@ -58,6 +59,7 @@ const CryptoModal = ({ currency, address, onClose }: CryptoModalProps) => {
 };
 
 export default function Support() {
+  const { m } = useI18n();
   const [showModal, setShowModal] = useState(false);
   const [currentCurrency, setCurrentCurrency] = useState('');
   const [cryptoAddresses, setCryptoAddresses] = useState<{[key: string]: string}>({
@@ -101,12 +103,12 @@ export default function Support() {
       className="py-16 bg-[#0d2033] text-[#e8f1f8] border-y border-[#18334d]"
     >
       <div className="container mx-auto px-4 max-w-[1100px] text-center">
-        <h2 className="text-4xl md:text-[50px] font-normal uppercase font-['Oswald',sans-serif] leading-[60px] text-center mb-8">支持红色井界™</h2>
+        <h2 className="text-4xl md:text-[50px] font-normal uppercase font-['Oswald',sans-serif] leading-[60px] text-center mb-8"><BrandText text={m.support.title} /></h2>
         <p className="mt-6 mb-4 text-[14px] text-[#b9c7d4] max-w-3xl mx-auto">
-          红色井界™ 能够成功运作离不开 ChronoDivide 的可持续发展，基础设施（服务器、带宽）等都需要不菲的费用来维持运转，您如果觉得好玩，还请为 ChronoDivide 捐款！
+          {m.support.p1}
         </p>
         <p className="mb-8 text-[14px] text-[#b9c7d4] max-w-3xl mx-auto">
-          为了满足跨国资金流动需要，确保捐赠可以透明地支持到 ChronoDivide 作者，我们决定采用加密货币的形式，目前支持BTC、ETH、DOGE三种加密货币，以及支持按月订阅（类似于充电）的Buy Me A Coffee，下方的地址直接为 ChronoDivide 作者账户，您可以在区块链上透明地查看到每一笔捐助。如果您不知道如何操作，可以微信关注公众号 王二火大 了解加密货币基础知识，再次感谢您的关注和支持！
+          {m.support.p2}
         </p>
         <div className="w-64 h-[2px] bg-[#ff9408] mx-auto"></div>
         
@@ -131,21 +133,21 @@ export default function Support() {
               className="donate-crypto mx-2 inline-block"
               onClick={() => handleCryptoClick('btc')}
             >
-              <img src="/img/btc.svg" alt="捐赠比特币" title="捐赠比特币" className="h-16 w-16" />
+              <img src="/img/btc.svg" alt={m.support.donate.btc} title={m.support.donate.btc} className="h-16 w-16" />
             </button>
             
             <button 
               className="donate-crypto mx-2 inline-block"
               onClick={() => handleCryptoClick('eth')}
             >
-              <img src="/img/eth.svg" alt="捐赠以太坊" title="捐赠以太坊" className="h-16 w-16" />
+              <img src="/img/eth.svg" alt={m.support.donate.eth} title={m.support.donate.eth} className="h-16 w-16" />
             </button>
             
             <button 
               className="donate-crypto mx-2 inline-block"
               onClick={() => handleCryptoClick('doge')}
             >
-              <img src="/img/doge.svg" alt="捐赠狗狗币" title="捐赠狗狗币" className="h-16 w-16" />
+              <img src="/img/doge.svg" alt={m.support.donate.doge} title={m.support.donate.doge} className="h-16 w-16" />
             </button>
           </div>
         </div>

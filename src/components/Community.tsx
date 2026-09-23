@@ -1,17 +1,19 @@
 "use client";
 
 import Image from 'next/image';
+import { useI18n } from '@/i18n/LocaleProvider';
 
 export default function Community() {
+  const { m } = useI18n();
   return (
     <section 
       id="community" 
       className="py-16 bg-[#0d2033] text-[#e8f1f8] border-y border-[#18334d]"
     >
       <div className="container mx-auto px-4 max-w-[1100px]">
-        <h2 className="text-4xl md:text-[50px] font-normal uppercase font-['Oswald',sans-serif] leading-[60px] text-center mb-8">社区</h2>
+        <h2 className="text-4xl md:text-[50px] font-normal uppercase font-['Oswald',sans-serif] leading-[60px] text-center mb-8">{m.community.title}</h2>
         <p className="text-center max-w-2xl mx-auto mb-8 text-[#b9c7d4]">
-          从微信公众号 王二火大 获取各类周边资讯（包括加速器、攻略、QQ群等）。
+          {m.community.intro}
         </p>
         <div className="w-64 h-[2px] bg-[#ff9408] mx-auto mb-12"></div>
         
@@ -46,13 +48,13 @@ export default function Community() {
         <div className="mt-12 text-center">
           <Image 
             src="/img/wechat-qr.jpg" 
-            alt="微信公众号二维码" 
+            alt={m.community.qrAlt} 
             width={160}
             height={160}
             className="mx-auto rounded-lg shadow-lg"
             style={{ display: 'none' }} // 如果有二维码图片，可以移除这个样式
           />
-          <p className="mt-4 text-[#b9c7d4]">扫描关注微信公众号<strong>王二火大</strong>获取更多资讯</p>
+          <p className="mt-4 text-[#b9c7d4]">{m.community.followBefore}<strong>{m.community.followName}</strong>{m.community.followAfter}</p>
         </div>
       </div>
     </section>

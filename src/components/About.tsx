@@ -4,8 +4,13 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import NewsTag from './NewsTag';
+import RichText from '@/i18n/RichText';
+import BrandText from '@/i18n/BrandText';
+import { useI18n } from '@/i18n/LocaleProvider';
+import { formatDate } from '@/i18n/format';
 
 export default function About() {
+  const { locale, m } = useI18n();
   const [activeTab, setActiveTab] = useState('news');
   const [news, setNews] = useState<any[]>([]);
 
@@ -26,20 +31,12 @@ export default function About() {
       className="py-16 bg-[#081522] text-[#e8f1f8]"
     >
       <div className="container mx-auto px-4 max-w-[1100px]">
-        <h2 className="text-4xl md:text-[50px] font-normal uppercase font-['Oswald',sans-serif] leading-[60px] text-center mb-8">关于红色井界™</h2>
-        <p className="text-center max-w-3xl mx-auto mb-4 text-[#b9c7d4]">
-          红色井界™当前是 <strong>Chronodivide</strong> 的镜像运营站点。<strong>Chronodivide</strong> 
-          是首个完全基于网页技术开发的、对标知名即时战略游戏 《红色警戒2》 的游戏引擎，
-          具有完全知识产权的闭源项目，人们称其为&quot;网页红警&quot;，深受全球20余万用户喜爱。
-        </p>
-        <p className="text-center max-w-3xl mx-auto mb-4 text-[#b9c7d4]">
-          红色井界™致力于提升 <strong>Chronodivide</strong> 
-          在全平台的用户体验，贡献了中文翻译、移动端快捷面板（摇杆、快捷键等）等功能，极大提升了大中华区玩家游戏体验，并协助 <strong>Chronodivide</strong> 
-          共同打击盗版和持续净化游戏生态。
-        </p>
-        <p className="text-center max-w-3xl mx-auto mb-8 text-[#b9c7d4]">
-          <strong>Chronodivide</strong> 的终极目标是打造跨平台的即时战略类游戏引擎，当前已经初步证明了这一点。真诚欢迎各位有志之士一同参与社区建设，共同促进社区繁荣！
-        </p>
+        <h2 className="text-4xl md:text-[50px] font-normal uppercase font-['Oswald',sans-serif] leading-[60px] text-center mb-8"><BrandText text={m.about.title} /></h2>
+        {m.about.paragraphs.map((paragraph) => (
+          <p key={paragraph} className="text-center max-w-3xl mx-auto mb-4 text-[#b9c7d4] last:mb-8">
+            <RichText text={paragraph} />
+          </p>
+        ))}
         
         <div className="w-64 h-[2px] bg-[#ff9408] mx-auto mb-12"></div>
         
@@ -55,7 +52,7 @@ export default function About() {
                   }`}
                   onClick={() => setActiveTab('news')}
                 >
-                  新闻
+                  {m.about.tabNews}
                 </button>
               </li>
               <li className="inline-block -ml-[2px]">
@@ -67,7 +64,7 @@ export default function About() {
                   }`}
                   onClick={() => setActiveTab('specs')}
                 >
-                  配置要求
+                  {m.about.tabSpecs}
                 </button>
               </li>
             </ul>
@@ -91,7 +88,7 @@ export default function About() {
                           </h4>
                         </div>
                         <div className="flex items-center gap-4 text-xs text-[#8197aa] mt-2 sm:mt-0 shrink-0">
-                          <span className="font-mono">{new Date(item.published_at).toLocaleDateString()}</span>
+                          <span className="font-mono">{formatDate(item.published_at, locale)}</span>
                           <span className="text-[#ff9408] font-bold group-hover:translate-x-1 transition-transform">→</span>
                         </div>
                       </Link>
@@ -103,7 +100,7 @@ export default function About() {
                       <div className="relative ml-0 md:ml-6">
                         <Image 
                           src="/img/lobby-main.jpg" 
-                          alt="游戏大厅" 
+                          alt={m.about.lobbyAlt} 
                           width={600}
                           height={400}
                           className="shadow-lg border border-[#274763] bg-[#0d1e31] p-2.5 rounded-none"
@@ -111,11 +108,10 @@ export default function About() {
                       </div>
                     </div>
                     <div className="md:w-[54.3%] md:float-right text-left">
-                      <h3 className="text-2xl md:text-[24px] font-bold uppercase text-white leading-7">开发进展<span className="block text-sm font-normal text-[#ff9000] mt-1">持续更新中……</span></h3>
-                      <p className="pt-7 pb-5 text-[#aebdca] leading-6">当前已经支持联机、单机，游戏地图持续增加中，并支持游玩自定义地图，而且可以免费查看对战录像回放。</p>
+                      <h3 className="text-2xl md:text-[24px] font-bold uppercase text-white leading-7">{m.about.progressTitle}<span className="block text-sm font-normal text-[#ff9000] mt-1">{m.about.progressStatus}</span></h3>
+                      <p className="pt-7 pb-5 text-[#aebdca] leading-6">{m.about.progressBody}</p>
                       <p className="text-[#aebdca] leading-6">
-                        你可以在 <Link href="/news" className="text-[#ff9408] hover:text-[#ff9408] hover:underline">新闻中心</Link> 
-                        查看游戏更新的最新情报，或者微信关注公众号 王二火大 获取各类周边资讯（包括加速器、攻略、QQ群等）。
+                        {m.about.progressBefore}<Link href="/news" className="text-[#ff9408] hover:text-[#ff9408] hover:underline">{m.about.progressLink}</Link>{m.about.progressAfter}
                       </p>
                     </div>
                     <div className="clear-both"></div>
@@ -130,7 +126,7 @@ export default function About() {
                   <div className="relative ml-0 md:ml-6">
                     <Image 
                       src="/img/lobby-main.jpg" 
-                      alt="游戏大厅" 
+                      alt={m.about.lobbyAlt} 
                       width={600}
                       height={400}
                       className="shadow-lg border border-[#274763] bg-[#0d1e31] p-2.5"
@@ -138,14 +134,11 @@ export default function About() {
                   </div>
                 </div>
                 <div className="md:w-[54.3%] md:float-right text-left">
-                  <h3 className="text-2xl md:text-[24px] font-bold uppercase text-white leading-7">建议游戏配置</h3>
+                  <h3 className="text-2xl md:text-[24px] font-bold uppercase text-white leading-7">{m.about.specsTitle}</h3>
                   <ul className="list-disc pl-5 text-[#aebdca] pt-7 space-y-4">
-                    <li>CPU: Intel Atom Z3700+ @1.33GHz (安卓、苹果等建议使用2018年及之后的新设备)</li>
-                    <li>OS: 64位操作系统 (并且需要支持能打开浏览器)</li>
-                    <li>Memory: 4GB (如果更大则更好)</li>
-                    <li>GPU: Intel HD Graphics (安卓、苹果等建议使用2018年及之后的新设备)</li>
-                    <li>分辨率: 1024x768 最低</li>
-                    <li>浏览器: 最新版本的 Google Chrome, Mozilla Firefox, Microsoft Edge or Safari (尽可能避免使用 Firefox)</li>
+                    {m.about.specs.map((spec) => (
+                      <li key={spec}>{spec}</li>
+                    ))}
                   </ul>
                 </div>
                 <div className="clear-both"></div>

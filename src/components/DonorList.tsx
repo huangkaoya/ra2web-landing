@@ -2,50 +2,38 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import type { DonationRecord, DonationsFile, DonationCurrency, DonationChannel } from '@/types/donation';
+import { useI18n } from '@/i18n/LocaleProvider';
+import { formatDate } from '@/i18n/format';
+import type { Messages } from '@/i18n/types';
 
 const VISIBLE_ROWS = 5;
 const ROW_HEIGHT_PX = 44;
 
-const CURRENCY_LABELS: Record<DonationCurrency, string> = {
-  btc: 'BTC',
-  eth: 'ETH',
-  doge: 'DOGE',
-  bmc: 'Buy Me A Coffee',
-  other: '其他',
-};
-
-const CHANNEL_LABELS: Record<DonationChannel, string> = {
-  crypto: '加密货币',
-  bmc: 'Buy Me A Coffee',
-  other: '其他',
-};
-
-function formatDonatedAt(iso: string): string {
-  try {
-    return new Date(iso).toLocaleDateString('zh-CN', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-    });
-  } catch {
-    return iso;
-  }
+function currencyLabel(currency: DonationCurrency, copy: Messages['donors']): string {
+  if (currency === 'bmc') return copy.bmc;
+  if (currency === 'other') return copy.other;
+  return currency.toUpperCase();
 }
 
-function formatAmount(record: DonationRecord): string {
+function channelLabel(channel: DonationChannel, copy: Messages['donors']): string {
+  if (channel === 'crypto') return copy.crypto;
+  if (channel === 'bmc') return copy.bmc;
+  return copy.other;
+}
+
+function formatAmount(record: DonationRecord, copy: Messages['donors']): string {
   if (record.amount && record.currency) {
-    const label = CURRENCY_LABELS[record.currency] ?? record.currency;
-    return `${record.amount} ${label}`;
+    return `${record.amount} ${currencyLabel(record.currency, copy)}`;
   }
   if (record.currency && record.currency !== 'other') {
-    return CURRENCY_LABELS[record.currency];
+    return currencyLabel(record.currency, copy);
   }
-  return '已支持';
+  return copy.supported;
 }
 
-function displayName(record: DonationRecord): string {
-  if (record.anonymous) return '匿名支持者';
-  return record.displayName?.trim() || '热心支持者';
+function displayName(record: DonationRecord, copy: Messages['donors']): string {
+  if (record.anonymous) return copy.anonymous;
+  return record.displayName?.trim() || copy.supporter;
 }
 
 function sortDonations(records: DonationRecord[]): DonationRecord[] {
@@ -54,20 +42,20 @@ function sortDonations(records: DonationRecord[]): DonationRecord[] {
     .sort((a, b) => new Date(b.donatedAt).getTime() - new Date(a.donatedAt).getTime());
 }
 
-function DonationRow({ record }: { record: DonationRecord }) {
+function DonationRow({ record, copy, locale }: { record: DonationRecord; copy: Messages['donors']; locale: 'zh' | 'en' }) {
   return (
     <div
       className="flex items-center gap-3 px-4 border-b border-[#2a4660] text-sm shrink-0"
       style={{ height: ROW_HEIGHT_PX }}
     >
       <span className="text-[#e8f1f8] font-medium shrink-0 min-w-[5rem] max-w-[8rem] truncate">
-        {displayName(record)}
+        {displayName(record, copy)}
       </span>
       <span className="text-[#b9c7d4] shrink-0 hidden sm:inline">
-        {CHANNEL_LABELS[record.channel]}
+        {channelLabel(record.channel, copy)}
       </span>
-      <span className="text-[#b9c7d4] shrink-0">{formatAmount(record)}</span>
-      <span className="text-[#9eb1c3] shrink-0 text-xs">{formatDonatedAt(record.donatedAt)}</span>
+      <span className="text-[#b9c7d4] shrink-0">{formatAmount(record, copy)}</span>
+      <span className="text-[#9eb1c3] shrink-0 text-xs">{formatDate(record.donatedAt, locale)}</span>
       {record.message && (
         <span className="text-[#9eb1c3] truncate flex-1 min-w-0">{record.message}</span>
       )}
@@ -79,7 +67,7 @@ function DonationRow({ record }: { record: DonationRecord }) {
           className="text-[#ff9408] hover:text-[#fda93c] text-xs underline shrink-0 ml-auto"
           onClick={(e) => e.stopPropagation()}
         >
-          凭证
+          {copy.receipt}
         </a>
       )}
     </div>
@@ -87,6 +75,8 @@ function DonationRow({ record }: { record: DonationRecord }) {
 }
 
 export default function DonorList() {
+  const { locale, m } = useI18n();
+  const copy = m.donors;
   const [donations, setDonations] = useState<DonationRecord[]>([]);
   const [loadState, setLoadState] = useState<'loading' | 'ready' | 'error'>('loading');
   const [paused, setPaused] = useState(false);
@@ -119,7 +109,7 @@ export default function DonorList() {
   if (loadState === 'loading') {
     return (
       <div className="mt-16 text-left">
-        <p className="text-[#9eb1c3] text-sm text-center">加载捐赠记录…</p>
+        <p className="text-[#9eb1c3] text-sm text-center">{copy.loading}</p>
       </div>
     );
   }
@@ -133,14 +123,14 @@ export default function DonorList() {
   return (
     <div className="mt-16 text-left">
       <h3 className="text-2xl md:text-3xl font-normal uppercase font-['Oswald',sans-serif] text-center text-[#e8f1f8] mb-2">
-        感谢捐赠
+        {copy.title}
       </h3>
       <p className="text-center text-[13px] text-[#9eb1c3] mb-8 max-w-2xl mx-auto">
-        以下名单经人工核对后公开，感谢每一位支持 ChronoDivide 的朋友。通过此处捐赠的金额100%直接到账 Chronodivide 作者账户
+        {copy.intro}
       </p>
 
       {donations.length === 0 ? (
-        <p className="text-center text-[#9eb1c3] text-sm">暂无公开捐赠记录</p>
+        <p className="text-center text-[#9eb1c3] text-sm">{copy.empty}</p>
       ) : (
         <div
           className="relative mx-auto max-w-3xl rounded border border-[#2a4660] bg-[#122a40]/40 overflow-hidden"
@@ -172,7 +162,7 @@ export default function DonorList() {
             }
           >
             {scrollItems.map((record, index) => (
-              <DonationRow key={`${record.id}-${index}`} record={record} />
+              <DonationRow key={`${record.id}-${index}`} record={record} copy={copy} locale={locale} />
             ))}
           </div>
         </div>

@@ -2,23 +2,25 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useI18n } from '@/i18n/LocaleProvider';
 
-// Define section IDs for scroll spying
 const SECTION_IDS = ['home', 'about', 'features', 'community', 'media', 'donate', 'play'];
-// Define navigation items
-const NAV_ITEMS = [
-  { href: '#home', label: '首页' },
-  { href: '#features', label: '核心特色' },
-  { href: '#community', label: '社区' },
-  { href: '#media', label: '频道' },
-  { href: '/news', label: '新闻中心', isPageLink: true },
-  { href: 'https://gonghui.k0s.cn', label: '点此开玩！', isExternal: true },
-];
 
 export default function Navigation() {
+  const { m } = useI18n();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const navItems = [
+    { href: '#home', label: m.nav.home },
+    { href: '#features', label: m.nav.features },
+    { href: '#community', label: m.nav.community },
+    { href: '#media', label: m.nav.media },
+    { href: '/news', label: m.nav.news, isPageLink: true },
+    { href: 'https://gonghui.k0s.cn', label: m.nav.play, isExternal: true },
+  ];
 
   const toggleMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -104,14 +106,17 @@ export default function Navigation() {
             onClick={(e) => handleNavClick(e, '#home')} 
             className={`site-logo bg-contain bg-no-repeat bg-left-top w-[106px] h-[50px] mt-[3px] md:transition-all md:duration-500 ${isScrolled ? 'md:w-[106px] md:h-[50px] md:mt-[3px]' : 'md:w-[158px] md:h-[75px] md:mt-[15px]'}`}
             style={{ backgroundImage: "url('/img/logo.png')" }}
-            aria-label="返回首页"
+            aria-label={m.nav.logoAria}
           />
 
-          {/* 移动端菜单按钮 - 紧贴边缘 */}
+          <div className="md:hidden absolute top-0 right-[55px] h-[56px] flex items-center">
+            <LanguageSwitcher />
+          </div>
+
           <button 
             onClick={toggleMenu} 
             className={`md:hidden text-white focus:outline-none ${mobileMenuOpen ? 'bg-[#e3860e]' : 'bg-[#ff9408]'} w-[55px] h-[56px] flex items-center justify-center transition-colors absolute top-0 right-0`}
-            aria-label={mobileMenuOpen ? "关闭菜单" : "打开菜单"}
+            aria-label={mobileMenuOpen ? m.nav.closeMenu : m.nav.openMenu}
           >
             {mobileMenuOpen ? (
               <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
@@ -121,9 +126,10 @@ export default function Navigation() {
           </button>
 
           {/* 桌面端导航 */}
-          <nav className="hidden md:flex md:items-center md:ml-auto">
+          <div className="hidden md:flex md:items-center md:ml-auto">
+          <nav className="flex items-center">
             <ul className="md:flex md:flex-row list-none m-0">
-              {NAV_ITEMS.map((item) => {
+              {navItems.map((item) => {
                 const sectionId = item.href.startsWith('#') ? item.href.substring(1) : null;
                 const isActive = sectionId === activeSection;
                 const Tag = item.isPageLink ? Link : 'a';
@@ -155,6 +161,8 @@ export default function Navigation() {
               })}
             </ul>
           </nav>
+          <LanguageSwitcher className="ml-3 shrink-0" />
+          </div>
         </div>
       </div>
 
@@ -166,7 +174,7 @@ export default function Navigation() {
         style={{ maxHeight: mobileMenuOpen ? '80vh' : '0', overflow: 'auto' }}
       >
         <ul className="flex flex-col list-none m-0">
-          {NAV_ITEMS.map((item) => {
+          {navItems.map((item) => {
             const sectionId = item.href.startsWith('#') ? item.href.substring(1) : null;
             const isActive = sectionId === activeSection;
             const Tag = item.isPageLink ? Link : 'a';

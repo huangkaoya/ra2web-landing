@@ -1,8 +1,10 @@
 "use client";
 
 import FooterContent from './FooterContent';
+import { useI18n } from '@/i18n/LocaleProvider';
 
 export default function Footer() {
+  const { m } = useI18n();
   return (
     <section 
       id="play" 
@@ -10,7 +12,7 @@ export default function Footer() {
       style={{ backgroundImage: 'url("/img/Get-bg.jpg")' }}
     >
       <div className="Center container mx-auto max-w-[1100px] text-center py-28">
-        <h2 className="text-5xl md:text-[57px] font-normal uppercase leading-[60px] font-['Oswald',sans-serif]">现在开玩</h2>
+        <h2 className="text-5xl md:text-[57px] font-normal uppercase leading-[60px] font-['Oswald',sans-serif]">{m.footer.playNow}</h2>
         <p className="py-6"></p>
         <div className="w-64 h-[2px] bg-[#ff9408] mx-auto"></div>
         <div className="py-6">
