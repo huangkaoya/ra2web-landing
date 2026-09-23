@@ -1,13 +1,14 @@
 'use client';
 
 import SubpageLayout from './SubpageLayout';
+import BrandText from '@/i18n/BrandText';
 import type { LegalDoc } from '@/i18n/types';
 
 export default function LegalDocument({ doc }: { doc: LegalDoc }) {
   return (
     <SubpageLayout title={doc.title}>
       <div className="space-y-6">
-        <h2 className="text-4xl font-normal uppercase font-['Oswald',sans-serif] mb-8 text-center">{doc.heading}</h2>
+        <h2 className="text-4xl font-normal uppercase font-['Oswald',sans-serif] mb-8 text-center"><BrandText text={doc.heading} /></h2>
         <div className="w-64 h-[2px] bg-[#ff9408] mx-auto mb-12"></div>
         <p className="mb-4 text-gray-600">{doc.updated}</p>
         <div className="space-y-6 text-gray-700">

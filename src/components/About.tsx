@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import NewsTag from './NewsTag';
 import RichText from '@/i18n/RichText';
+import BrandText from '@/i18n/BrandText';
 import { useI18n } from '@/i18n/LocaleProvider';
 import { formatDate } from '@/i18n/format';
 
@@ -30,7 +31,7 @@ export default function About() {
       className="py-16 bg-[#081522] text-[#e8f1f8]"
     >
       <div className="container mx-auto px-4 max-w-[1100px]">
-        <h2 className="text-4xl md:text-[50px] font-normal uppercase font-['Oswald',sans-serif] leading-[60px] text-center mb-8">{m.about.title}</h2>
+        <h2 className="text-4xl md:text-[50px] font-normal uppercase font-['Oswald',sans-serif] leading-[60px] text-center mb-8"><BrandText text={m.about.title} /></h2>
         {m.about.paragraphs.map((paragraph) => (
           <p key={paragraph} className="text-center max-w-3xl mx-auto mb-4 text-[#b9c7d4] last:mb-8">
             <RichText text={paragraph} />

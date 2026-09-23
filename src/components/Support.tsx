@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import DonorList from './DonorList';
 import { useI18n } from '@/i18n/LocaleProvider';
+import BrandText from '@/i18n/BrandText';
 import { fill } from '@/i18n/format';
 import type { Messages } from '@/i18n/types';
 
@@ -102,7 +103,7 @@ export default function Support() {
       className="py-16 bg-[#0d2033] text-[#e8f1f8] border-y border-[#18334d]"
     >
       <div className="container mx-auto px-4 max-w-[1100px] text-center">
-        <h2 className="text-4xl md:text-[50px] font-normal uppercase font-['Oswald',sans-serif] leading-[60px] text-center mb-8">{m.support.title}</h2>
+        <h2 className="text-4xl md:text-[50px] font-normal uppercase font-['Oswald',sans-serif] leading-[60px] text-center mb-8"><BrandText text={m.support.title} /></h2>
         <p className="mt-6 mb-4 text-[14px] text-[#b9c7d4] max-w-3xl mx-auto">
           {m.support.p1}
         </p>
