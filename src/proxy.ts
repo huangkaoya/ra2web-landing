@@ -1,18 +1,29 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { negotiateLocale } from '@/i18n/negotiate';
 import { htmlLang } from '@/i18n/format';
-import { isLocale, LOCALE_COOKIE, type Locale } from '@/i18n/types';
+import { resolveLocale } from '@/i18n/resolve-locale';
+import { LOCALE_COOKIE } from '@/i18n/types';
 
-function resolveLocale(request: NextRequest): Locale {
-  const forced = request.cookies.get(LOCALE_COOKIE)?.value;
-  if (isLocale(forced)) return forced;
-  return negotiateLocale(request.headers.get('accept-language'));
-}
+const LANG_HEADER = 'x-ra2web-lang';
+const PATH_HEADER = 'x-ra2web-pathname';
 
 export function proxy(request: NextRequest) {
-  const locale = resolveLocale(request);
-  const response = NextResponse.next();
+  const langQuery = request.nextUrl.searchParams.get('lang');
+  const locale = resolveLocale({
+    cookie: request.cookies.get(LOCALE_COOKIE)?.value,
+    langQuery,
+    acceptLanguage: request.headers.get('accept-language'),
+    userAgent: request.headers.get('user-agent'),
+  });
+
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set(PATH_HEADER, request.nextUrl.pathname);
+  if (langQuery) requestHeaders.set(LANG_HEADER, langQuery);
+  else requestHeaders.delete(LANG_HEADER);
+
+  const response = NextResponse.next({
+    request: { headers: requestHeaders },
+  });
   response.headers.set('Content-Language', htmlLang(locale));
   response.headers.set('Vary', 'Accept-Language, Cookie');
   return response;

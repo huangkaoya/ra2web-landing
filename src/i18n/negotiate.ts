@@ -21,7 +21,11 @@ function parseAcceptLanguage(header: string): RankedTag[] {
     .sort((a, b) => b.q - a.q);
 }
 
-/** Map ordered language tags (navigator.languages or a sorted Accept-Language list). */
+/**
+ * Map ordered language tags (a sorted Accept-Language list).
+ * zh* → Chinese, en* → English. Unsupported tags fall through to English,
+ * which is the existing browser default when the visitor named some other language.
+ */
 export function negotiateLocaleFromTags(tags: Iterable<string> | null | undefined): Locale {
   if (!tags) return 'en';
   for (const raw of tags) {
@@ -33,8 +37,14 @@ export function negotiateLocaleFromTags(tags: Iterable<string> | null | undefine
   return 'en';
 }
 
-/** Prefer zh* when it ranks first among languages this site supports; otherwise English. */
+/**
+ * Negotiate a locale from Accept-Language.
+ * No header, an empty header, or only `*` is "no preference" and defaults to
+ * Chinese, so crawlers and bare requests index the Chinese page.
+ */
 export function negotiateLocale(acceptLanguage: string | null | undefined): Locale {
-  if (!acceptLanguage?.trim()) return 'en';
-  return negotiateLocaleFromTags(parseAcceptLanguage(acceptLanguage).map((item) => item.tag));
+  if (!acceptLanguage?.trim()) return 'zh';
+  const tags = parseAcceptLanguage(acceptLanguage);
+  if (tags.length === 0) return 'zh';
+  return negotiateLocaleFromTags(tags.map((item) => item.tag));
 }
