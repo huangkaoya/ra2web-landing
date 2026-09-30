@@ -104,7 +104,7 @@ export default function Navigation() {
           <Link 
             href="/#home" 
             onClick={(e) => handleNavClick(e, '#home')} 
-            className={`site-logo bg-contain bg-no-repeat bg-left-top w-[106px] h-[50px] mt-[3px] md:transition-all md:duration-500 ${isScrolled ? 'md:w-[106px] md:h-[50px] md:mt-[3px]' : 'md:w-[158px] md:h-[75px] md:mt-[15px]'}`}
+            className={`site-logo shrink-0 bg-contain bg-no-repeat bg-left-top w-[106px] h-[50px] mt-[3px] md:transition-all md:duration-500 ${isScrolled ? 'md:w-[106px] md:h-[50px] md:mt-[3px]' : 'md:w-[158px] md:h-[75px] md:mt-[15px]'}`}
             style={{ backgroundImage: "url('/img/logo.png')" }}
             aria-label={m.nav.logoAria}
           />
@@ -125,10 +125,10 @@ export default function Navigation() {
             )}
           </button>
 
-          {/* 桌面端导航 */}
-          <div className="hidden md:flex md:items-center md:ml-auto">
+          {/* 桌面端导航。中文可以在任意字间断行，语言切换挤占宽度后 flex 收缩会把标签折成两行，所以标签不换行、不收缩。 */}
+          <div className="hidden md:flex md:items-center md:shrink-0 md:ml-auto">
           <nav className="flex items-center">
-            <ul className="md:flex md:flex-row list-none m-0">
+            <ul className="md:flex md:flex-row md:flex-nowrap list-none m-0">
               {navItems.map((item) => {
                 const sectionId = item.href.startsWith('#') ? item.href.substring(1) : null;
                 const isActive = sectionId === activeSection;
@@ -140,15 +140,15 @@ export default function Navigation() {
                 return (
                   <li 
                     key={item.href} 
-                    className={`m-0 p-0 relative transition-all duration-500 group ${isActive ? 'active' : ''} ${isScrolled ? 'h-[56px]' : 'h-[102px]'}`}
+                    className={`m-0 p-0 relative shrink-0 transition-all duration-500 group ${isActive ? 'active' : ''} ${isScrolled ? 'h-[56px]' : 'h-[102px]'}`}
                   >
                     <Tag
                       href={item.href}
                       {...linkProps}
-                      className={`relative flex items-center font-normal font-['Open_Sans'] text-base text-white no-underline h-full transition-all duration-300 
+                      className={`relative flex items-center justify-center whitespace-nowrap font-normal font-['Open_Sans'] text-base text-white no-underline h-full transition-all duration-300 
                         ${isScrolled 
-                          ? 'md:py-[16px] md:px-[10px] lg:py-[16px] lg:px-[36px] xl:py-[16px] xl:px-[41px]' 
-                          : 'md:pt-[30px] md:pb-[30px] md:px-[10px] lg:pt-[30px] lg:pb-[30px] lg:px-[30px] xl:pt-[42px] xl:pb-[33px] xl:px-[41px]'
+                          ? 'md:py-[16px] md:px-2 lg:px-6 xl:px-8' 
+                          : 'md:pt-[30px] md:pb-[30px] md:px-2 lg:pt-[30px] lg:pb-[30px] lg:px-6 xl:pt-[42px] xl:pb-[33px] xl:px-8'
                         }`}
                     >
                       {item.label}

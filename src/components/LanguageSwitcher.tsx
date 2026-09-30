@@ -10,7 +10,10 @@ export default function LanguageSwitcher({ className = '' }: { className?: strin
   const choose = (next: Locale) => {
     if (next === locale) return;
     writeLocaleCookie(next);
-    window.location.reload();
+    const url = new URL(window.location.href);
+    if (next === 'en') url.searchParams.set('lang', 'en');
+    else url.searchParams.delete('lang');
+    window.location.assign(url.toString());
   };
 
   const buttonClass = (active: boolean) =>

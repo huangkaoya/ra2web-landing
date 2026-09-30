@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { LocaleProvider } from "@/i18n/LocaleProvider";
-import { getLocale } from "@/i18n/get-locale";
+import { getLocaleContext } from "@/i18n/get-locale";
 import { getMessages } from "@/i18n/messages";
 import { htmlLang } from "@/i18n/format";
+import { localeAlternates } from "@/i18n/seo";
 import { LOCALE_BOOTSTRAP } from "@/i18n/cookie";
 
 const geistSans = Geist({
@@ -18,14 +19,20 @@ const geistMono = Geist_Mono({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-  const locale = await getLocale();
+  const { locale, pathname } = await getLocaleContext();
   const meta = getMessages(locale).meta;
   const alternateLocale = locale === "zh" ? "en_US" : "zh_CN";
+  const { canonical, languages } = localeAlternates(pathname, locale);
 
   return {
+    metadataBase: new URL("https://www.ra2web.com"),
     title: meta.title,
     description: meta.description,
     keywords: meta.keywords,
+    alternates: {
+      canonical,
+      languages,
+    },
     openGraph: {
       title: meta.title,
       description: meta.description,
@@ -33,6 +40,7 @@ export async function generateMetadata(): Promise<Metadata> {
       alternateLocale: [alternateLocale],
       siteName: "ra2web",
       type: "website",
+      url: canonical,
     },
     twitter: {
       card: "summary",
@@ -47,7 +55,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const locale = await getLocale();
+  const { locale } = await getLocaleContext();
   const messages = getMessages(locale);
 
   return (
