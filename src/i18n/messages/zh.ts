@@ -115,6 +115,7 @@ export const zh: Messages = {
     gold: '金牌赞助商',
     goldAlt: '金牌赞助商',
     personal: '个人赞助',
+    namingNote: '捐赠 200 元以上的，可以自由决定挂名内容。',
     loading: '加载中…',
     empty: '暂无个人赞助记录',
   },
