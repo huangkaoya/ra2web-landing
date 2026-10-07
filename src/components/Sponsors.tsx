@@ -144,6 +144,9 @@ export default function Sponsors() {
             {personalLoadState === 'ready' && personalSponsors.length > 0 && (
               <PersonalSponsorList sponsors={personalSponsors} />
             )}
+            <p className="text-center text-[13px] text-[#9eb1c3] mt-3 max-w-2xl mx-auto">
+              {m.sponsors.namingNote}
+            </p>
           </div>
         </div>
       </div>

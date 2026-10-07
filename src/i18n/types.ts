@@ -94,6 +94,7 @@ export type Messages = {
     gold: string;
     goldAlt: string;
     personal: string;
+    namingNote: string;
     loading: string;
     empty: string;
   };

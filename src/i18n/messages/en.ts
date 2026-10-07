@@ -115,6 +115,7 @@ export const en: Messages = {
     gold: 'Gold sponsor',
     goldAlt: 'Gold sponsor',
     personal: 'Individual sponsors',
+    namingNote: 'Donors of ¥200 or more may choose what name or text is shown.',
     loading: 'Loading…',
     empty: 'No individual sponsors yet',
   },
