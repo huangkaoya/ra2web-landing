@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { LocaleProvider } from "@/i18n/LocaleProvider";
@@ -71,6 +72,7 @@ export default async function RootLayout({
         <LocaleProvider locale={locale} messages={messages}>
           {children}
         </LocaleProvider>
+        <Script src="/api/account/widget.js" strategy="afterInteractive" />
       </body>
     </html>
   );

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import LanguageSwitcher from './LanguageSwitcher';
+import UnifiedAccount from './UnifiedAccount';
 import { useI18n } from '@/i18n/LocaleProvider';
 
 const SECTION_IDS = ['home', 'about', 'features', 'community', 'media', 'donate', 'play'];
@@ -34,7 +35,7 @@ export default function Navigation() {
       if (element) {
         const elementPosition = element.getBoundingClientRect().top + window.scrollY;
         window.scrollTo({
-          top: elementPosition - (isScrolled ? 56 : 102), // 修正高度为102px (小版本为56px)
+          top: elementPosition - (isScrolled ? 56 : 102) - (window.innerWidth >= 768 ? 40 : 0), // 修正高度为102px (小版本为56px)
           behavior: 'smooth'
         });
         setMobileMenuOpen(false);
@@ -166,6 +167,10 @@ export default function Navigation() {
         </div>
       </div>
 
+      <div className="hidden md:flex justify-end container mx-auto px-4 max-w-[1100px] py-1 border-t border-white/10">
+        <UnifiedAccount />
+      </div>
+
       {/* 移动导航菜单 */}
       <nav 
         className={`md:hidden fixed top-[56px] left-0 w-full bg-black/95 shadow-lg transition-all duration-300 ease-in-out z-40 ${
@@ -197,6 +202,7 @@ export default function Navigation() {
               </li>
             );
           })}
+          <li className="px-6 py-4 text-white border-t border-gray-700"><UnifiedAccount /></li>
         </ul>
       </nav>
     </header>

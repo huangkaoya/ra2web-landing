@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import FooterContent from './FooterContent';
 import LanguageSwitcher from './LanguageSwitcher';
+import UnifiedAccount from './UnifiedAccount';
 import { useI18n } from '@/i18n/LocaleProvider';
 
 interface SubpageLayoutProps {
@@ -19,8 +20,9 @@ export default function SubpageLayout({ title, children }: SubpageLayoutProps) {
         <div className="container mx-auto px-4 max-w-[1100px]">
           <div className="flex flex-wrap justify-between items-center gap-3">
             <h1 className="text-2xl md:text-[30px] font-normal uppercase font-['Oswald',sans-serif]">{title}</h1>
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3">
               <LanguageSwitcher />
+              <UnifiedAccount />
               <Link
                 href="/"
                 className="bg-[#ff9408] hover:bg-[#e0840b] text-white py-2 px-6 transition-colors uppercase font-bold tracking-wide"
