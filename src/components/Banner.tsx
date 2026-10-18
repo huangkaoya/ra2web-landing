@@ -44,15 +44,23 @@ export default function Banner() {
                 href="https://game.ra2web.com/" 
                 target="_blank" 
                 rel="nofollow"
-                className="bg-[#ff9000] hover:bg-[#e3860e] text-white font-bold py-3 px-8 text-lg transition-colors duration-300"
+                className="inline-flex items-center justify-center whitespace-nowrap bg-[#ff9000] hover:bg-[#e3860e] text-white font-bold py-3 px-8 text-lg transition-colors duration-300"
               >
                 {m.banner.playNow}
+              </a>
+              <a
+                href="https://www.bilibili.com/toy/m7OYj6aBWZJxSY4I"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                className="inline-flex items-center justify-center whitespace-nowrap bg-white text-[#c45a00] hover:bg-[#ff9000] hover:text-white font-bold py-3 px-8 text-lg shadow-[0_0_0_2px_#ff9000] transition-colors duration-300"
+              >
+                {m.banner.reliable}
               </a>
               <a 
                 href="https://gonghui.k0s.cn/"
                 target="_blank" 
                 rel="nofollow"
-                className="border border-white hover:border-[#ff9000] hover:text-[#ff9000] text-white font-bold py-3 px-8 text-lg transition-colors duration-300"
+                className="inline-flex items-center justify-center whitespace-nowrap border border-white hover:border-[#ff9000] hover:text-[#ff9000] text-white font-bold py-3 px-8 text-lg transition-colors duration-300"
               >
                 {m.banner.stable}
               </a>

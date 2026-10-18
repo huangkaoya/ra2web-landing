@@ -31,6 +31,7 @@ export const en: Messages = {
     line1: 'Time to revisit a true classic of real-time strategy…',
     line2: '…right in your browser.',
     playNow: 'Play now',
+    reliable: 'Always-works version',
     stable: 'Stable server',
     slides: [
       { title: 'Soviets vs. Allies across the sea', subtitle: 'Match footage' },

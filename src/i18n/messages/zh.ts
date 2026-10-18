@@ -31,6 +31,7 @@ export const zh: Messages = {
     line1: '是时候体验和重温真正经典的即时战略游戏玩法……',
     line2: '……居然可以直接在您的浏览器！！',
     playNow: '立即开始',
+    reliable: '必定能打开版',
     stable: '稳定服',
     slides: [
       { title: '激烈跨海苏盟对决', subtitle: '对战实况展示' },
