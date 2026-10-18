@@ -51,6 +51,7 @@ export type Messages = {
     line1: string;
     line2: string;
     playNow: string;
+    reliable: string;
     stable: string;
     slides: { title: string; subtitle: string }[];
     goToSlide: string;
