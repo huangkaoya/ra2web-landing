@@ -159,6 +159,7 @@ export const zh: Messages = {
       { name: '盼之游戏交易', description: '领先的游戏交易代售网站' },
       { name: '共和国之辉', description: '共和国之辉官网' },
       { name: '王二火大', description: '王二火大官网' },
+      { name: '尤里的复仇网页版与客户端下载', description: '红色警戒2：尤里的复仇网页入口、安卓与 iOS 客户端下载' },
       { name: 'Bun中文网', description: 'Bun中文网' },
       { name: '狗狗币官网', description: '狗狗币官网' },
       { name: 'OpenRA', description: 'OpenRA官网' },

@@ -8,6 +8,7 @@ const LINK_URLS = [
   "https://www.pzds.com/?pzfrom=RWKTDJ",
   "https://www.gongheguozhihui.com",
   "https://www.wangerhuoda.com",
+  "https://youlidefuchou.com/",
   "https://bun.sh.cn",
   "https://www.dogecoin.com",
   "https://www.openra.net",
@@ -85,4 +86,4 @@ export default function FooterContent() {
       </div>
     </div>
   );
-} 
+}
