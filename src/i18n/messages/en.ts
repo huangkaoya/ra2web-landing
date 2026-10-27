@@ -159,7 +159,7 @@ export const en: Messages = {
       { name: '盼之游戏交易', description: 'A leading marketplace for game-account trading' },
       { name: '共和国之辉', description: 'Official 共和国之辉 site' },
       { name: '王二火大', description: 'Official 王二火大 site' },
-      { name: 'Yuri’s Revenge: Web Play & Downloads', description: 'Red Alert 2: Yuri’s Revenge web access and Android / iOS client downloads' },
+      { name: '尤里的复仇官网', description: 'Red Alert 2: Yuri’s Revenge web access and Android / iOS client downloads' },
       { name: 'Bun中文网', description: 'Bun documentation in Chinese' },
       { name: 'Dogecoin', description: 'Official Dogecoin site' },
       { name: 'OpenRA', description: 'Official OpenRA site' },
