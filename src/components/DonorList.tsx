@@ -108,7 +108,7 @@ export default function DonorList() {
 
   if (loadState === 'loading') {
     return (
-      <div className="mt-16 text-left">
+      <div className="mt-10 text-left">
         <p className="text-[#9eb1c3] text-sm text-center">{copy.loading}</p>
       </div>
     );
@@ -121,7 +121,7 @@ export default function DonorList() {
   const viewportHeight = VISIBLE_ROWS * ROW_HEIGHT_PX;
 
   return (
-    <div className="mt-16 text-left">
+    <div className="mt-10 text-left">
       <h3 className="text-2xl md:text-3xl font-normal uppercase font-['Oswald',sans-serif] text-center text-[#e8f1f8] mb-2">
         {copy.title}
       </h3>
