@@ -141,7 +141,7 @@ export const en: Messages = {
     privacy: 'Privacy Policy',
     cookies: 'Cookie Policy',
     tos: 'Terms of Service',
-    contact: 'Contact us',
+    contact: 'contact@ra2web.com',
     legal:
       'Legal notice: RA2WEB® is a registered trademark of RA2WEB LTD. 红色井界™, 王二火大™, 网页红井™, the “红围巾鸟” cartoon, and the “战争策略游戏” logo are trademarks of RA2WEB LTD and are protected by law. Red Alert 2 artwork shown on this page and in the game is downloaded and imported by players and is not affiliated with RA2WEB LTD.',
     linksTitle: 'Friends',
@@ -252,7 +252,7 @@ export const en: Messages = {
         blocks: [
           {
             type: 'p',
-            text: 'You may access, correct, or delete your personal information. To exercise these rights, contact us at contact@chronodivide.com.',
+            text: 'You may access, correct, or delete your personal information. To exercise these rights, contact us at contact@ra2web.com.',
           },
         ],
       },
@@ -261,7 +261,7 @@ export const en: Messages = {
         blocks: [
           {
             type: 'p',
-            text: 'Questions about this privacy policy can be sent to contact@chronodivide.com.',
+            text: 'Questions about this privacy policy can be sent to contact@ra2web.com.',
           },
         ],
       },
@@ -347,7 +347,7 @@ export const en: Messages = {
         blocks: [
           {
             type: 'p',
-            text: 'Questions about this cookie policy can be sent to contact@chronodivide.com.',
+            text: 'Questions about this cookie policy can be sent to contact@ra2web.com.',
           },
         ],
       },
@@ -449,7 +449,7 @@ export const en: Messages = {
         blocks: [
           {
             type: 'p',
-            text: 'Questions about these terms can be sent to contact@chronodivide.com.',
+            text: 'Questions about these terms can be sent to contact@ra2web.com.',
           },
         ],
       },

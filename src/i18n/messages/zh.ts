@@ -141,7 +141,7 @@ export const zh: Messages = {
     privacy: '隐私政策',
     cookies: 'Cookie政策',
     tos: '服务条款',
-    contact: '联系我们',
+    contact: 'contact@ra2web.com',
     legal:
       '法律声明：RA2WEB® 是 RA2WEB LTD 的注册商标，红色井界™ 王二火大™ 网页红井™ 及 "红围巾鸟"卡通形象 和 "战争策略游戏" 徽标 是 RA2WEB LTD 的商标，受法律保护。本页面宣传和游戏中出现的《Red Alert2》相关美术素材为玩家自行下载导入，与 RA2WEB LTD 无关。',
     linksTitle: '友情链接',
@@ -249,7 +249,7 @@ export const zh: Messages = {
         blocks: [
           {
             type: 'p',
-            text: '您有权访问、更正或删除您的个人信息。如需行使这些权利，请通过contact@chronodivide.com联系我们。',
+            text: '您有权访问、更正或删除您的个人信息。如需行使这些权利，请通过contact@ra2web.com联系我们。',
           },
         ],
       },
@@ -258,7 +258,7 @@ export const zh: Messages = {
         blocks: [
           {
             type: 'p',
-            text: '如果您对本隐私政策有任何疑问，请通过contact@chronodivide.com联系我们。',
+            text: '如果您对本隐私政策有任何疑问，请通过contact@ra2web.com联系我们。',
           },
         ],
       },
@@ -344,7 +344,7 @@ export const zh: Messages = {
         blocks: [
           {
             type: 'p',
-            text: '如果您对我们的Cookie政策有任何疑问，请通过contact@chronodivide.com联系我们。',
+            text: '如果您对我们的Cookie政策有任何疑问，请通过contact@ra2web.com联系我们。',
           },
         ],
       },
@@ -446,7 +446,7 @@ export const zh: Messages = {
         blocks: [
           {
             type: 'p',
-            text: '如果您对这些条款有任何疑问，请通过contact@chronodivide.com联系我们。',
+            text: '如果您对这些条款有任何疑问，请通过contact@ra2web.com联系我们。',
           },
         ],
       },

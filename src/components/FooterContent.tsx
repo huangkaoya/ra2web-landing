@@ -38,7 +38,7 @@ export default function FooterContent() {
           <span className="text-[#a9abad]">|</span>
           <a href="/tos" className="text-[#a9abad] hover:text-white no-underline px-2" rel="nofollow">{m.footer.tos}</a> 
           <span className="text-[#a9abad]">|</span>
-          <a href="mailto:contact@chronodivide.com" className="text-[#a9abad] hover:text-white no-underline px-2" rel="nofollow">{m.footer.contact}</a>
+          <a href="mailto:contact@ra2web.com" className="text-[#a9abad] hover:text-white no-underline px-2" rel="nofollow">{m.footer.contact}</a>
         </p>
       </div>
       
