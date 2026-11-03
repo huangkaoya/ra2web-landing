@@ -46,9 +46,9 @@ export const en: Messages = {
   about: {
     title: 'About ra2web',
     paragraphs: [
-      'ra2web is the mirror site for **Chronodivide**. **Chronodivide** is the first engine built entirely on web technology to stand alongside the real-time strategy game Command & Conquer: Red Alert 2. It is a closed-source project with its own intellectual property. Players nicknamed it “网页红警”, and more than 200,000 people around the world play it.',
-      'ra2web works to make **Chronodivide** feel better on every platform. It contributed the Chinese translation and the mobile quick panels (virtual stick, shortcuts, and more), which made the game much easier to play across Greater China, and it works with **Chronodivide** to fight piracy and keep the community in good shape.',
-      '**Chronodivide** is aiming for a cross-platform real-time strategy engine, and that direction is already visible. If you want to help the community grow, you are welcome.',
+      'ra2web is **fully self-developed**. It is the first engine built entirely on web technology to stand alongside the real-time strategy game Command & Conquer: Red Alert 2. It is a closed-source project with its own intellectual property. Players nicknamed it “网页红警”, and more than 200,000 people around the world play it.',
+      'ra2web is built for every platform. It includes the Chinese translation and the mobile quick panels (virtual stick, shortcuts, and more), which made the game much easier to play across Greater China, and it keeps fighting piracy and looking after the community.',
+      'ra2web is aiming for a cross-platform real-time strategy engine, and that direction is already visible. If you want to help the community grow, you are welcome.',
     ],
     tabNews: 'News',
     tabSpecs: 'Requirements',
@@ -122,19 +122,11 @@ export const en: Messages = {
   },
   support: {
     title: 'Support ra2web',
-    p1: 'ra2web stays online because ChronoDivide can keep going. Servers, bandwidth, and the rest of the infrastructure are not free. If you are having fun, please consider donating to ChronoDivide.',
-    p2: 'To move funds across borders and make sure donations reach the ChronoDivide author in the open, we accept cryptocurrency. BTC, ETH, and DOGE are supported, along with a monthly Buy Me a Coffee subscription. The addresses below belong directly to the ChronoDivide author, and every donation is visible on-chain. If you are new to this, follow the WeChat account 王二火大 for a short primer. Thank you again for the support.',
-    copy: 'Copy address',
-    copied: 'Address copied!',
-    addressHint: '{name} address — please double-check',
-    currencies: { btc: 'Bitcoin', eth: 'Ethereum', doge: 'Dogecoin' },
-    donate: { btc: 'Donate Bitcoin', eth: 'Donate Ethereum', doge: 'Donate Dogecoin' },
   },
   donors: {
     loading: 'Loading donations…',
     title: 'Thank you',
-    intro:
-      'This list is published after a manual check. Thank you to everyone who supports ChronoDivide. 100% of donations made here go directly to the ChronoDivide author’s account.',
+    intro: 'This list is published after a manual check. Thank you to everyone who supports ra2web.',
     empty: 'No public donations yet',
     anonymous: 'Anonymous supporter',
     supporter: 'Supporter',

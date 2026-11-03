@@ -101,13 +101,6 @@ export type Messages = {
   };
   support: {
     title: string;
-    p1: string;
-    p2: string;
-    copy: string;
-    copied: string;
-    addressHint: string;
-    currencies: { btc: string; eth: string; doge: string };
-    donate: { btc: string; eth: string; doge: string };
   };
   donors: {
     loading: string;

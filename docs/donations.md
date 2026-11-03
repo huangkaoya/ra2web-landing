@@ -4,7 +4,7 @@
 
 ## 操作流程
 
-1. 在区块链浏览器或 [Buy Me A Coffee](https://www.buymeacoffee.com/chronodivide) 核对捐赠真实性。
+1. 在区块链浏览器核对捐赠真实性。
 2. 编辑 `public/donations.json`：在 `donations` 数组中追加一条记录，并更新顶层 `updatedAt`（建议 ISO 日期，如 `2026-05-21`）。
 3. 本地预览：`npm run dev`，打开 `http://localhost:3000/#donate` 检查展示。
 4. 提交并部署 landing 站点（与现有发布流程一致）。
@@ -43,7 +43,7 @@
   "currency": "btc",
   "channel": "crypto",
   "donatedAt": "2026-05-20T08:00:00Z",
-  "message": "感谢 Chronodivide！",
+  "message": "感谢支持！",
   "txUrl": "https://blockchain.info/tx/...",
   "published": true
 }
