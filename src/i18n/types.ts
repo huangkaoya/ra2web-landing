@@ -101,6 +101,13 @@ export type Messages = {
   };
   support: {
     title: string;
+    costsTitle: string;
+    costsLead: string;
+    cdnLabel: string;
+    cdnDetail: string;
+    serversLabel: string;
+    serversAmount: string;
+    serversCaption: string;
   };
   donors: {
     loading: string;
