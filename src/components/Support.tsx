@@ -15,6 +15,27 @@ export default function Support() {
       <div className="container mx-auto px-4 max-w-[1100px] text-center">
         <h2 className="text-4xl md:text-[50px] font-normal uppercase font-['Oswald',sans-serif] leading-[60px] text-center mb-8"><BrandText text={m.support.title} /></h2>
         <div className="w-64 h-[2px] bg-[#ff9408] mx-auto"></div>
+        <div className="mx-auto mt-10 max-w-3xl rounded-[4px] border border-[#2a4660] bg-[#122a40]/50 px-4 py-6 text-left sm:px-6">
+          <h3 className="text-center font-['Oswald',sans-serif] text-2xl font-normal uppercase leading-tight text-[#e8f1f8] md:text-3xl">
+            {m.support.costsTitle}
+          </h3>
+          <p className="mx-auto mt-3 max-w-2xl text-center text-sm leading-relaxed text-[#b9c7d4] md:text-base">
+            {m.support.costsLead}
+          </p>
+          <dl className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <div className="rounded-[4px] border border-[#2a4660] border-l-[3px] border-l-[#ff9408] bg-[#0d2033] px-4 py-5 text-center">
+              <dt className="text-sm text-[#9eb1c3]">{m.support.cdnLabel}</dt>
+              <dd className="mt-2 text-lg leading-snug text-[#e8f1f8]">{m.support.cdnDetail}</dd>
+            </div>
+            <div className="rounded-[4px] border border-[#2a4660] border-l-[3px] border-l-[#ff9408] bg-[#0d2033] px-4 py-5 text-center">
+              <dt className="text-sm text-[#9eb1c3]">{m.support.serversLabel}</dt>
+              <dd className="mt-2">
+                <span className="block font-['Oswald',sans-serif] text-3xl leading-none text-[#ff9408]">{m.support.serversAmount}</span>
+                <span className="mt-2 block text-sm text-[#e8f1f8]">{m.support.serversCaption}</span>
+              </dd>
+            </div>
+          </dl>
+        </div>
         <DonorList />
       </div>
     </section>

@@ -122,6 +122,13 @@ export const zh: Messages = {
   },
   support: {
     title: '支持红色井界™',
+    costsTitle: '当前网站费用',
+    costsLead: '目前不存在任何商业化行为，站点运营费用全部由运营方承担。',
+    cdnLabel: '腾讯云 CDN',
+    cdnDetail: '已获得赞助免费套餐',
+    serversLabel: '服务器',
+    serversAmount: '500 元',
+    serversCaption: '每月 · 6 台合计',
   },
   donors: {
     loading: '加载捐赠记录…',

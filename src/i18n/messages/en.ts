@@ -122,6 +122,13 @@ export const en: Messages = {
   },
   support: {
     title: 'Support ra2web',
+    costsTitle: 'Current site costs',
+    costsLead: 'There is no commercialization at present. Operating costs are covered entirely by the operator.',
+    cdnLabel: 'Tencent Cloud CDN',
+    cdnDetail: 'Sponsored free package',
+    serversLabel: 'Servers',
+    serversAmount: '¥500',
+    serversCaption: 'per month, 6 servers in total',
   },
   donors: {
     loading: 'Loading donations…',
