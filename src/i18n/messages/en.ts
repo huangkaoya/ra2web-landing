@@ -46,9 +46,10 @@ export const en: Messages = {
   about: {
     title: 'About ra2web',
     paragraphs: [
-      'ra2web is **fully self-developed**. It is the first engine built entirely on web technology to stand alongside the real-time strategy game Command & Conquer: Red Alert 2. It is a closed-source project with its own intellectual property. Players nicknamed it “网页红警”, and more than 200,000 people around the world play it.',
-      'ra2web is built for every platform. It includes the Chinese translation and the mobile quick panels (virtual stick, shortcuts, and more), which made the game much easier to play across Greater China, and it keeps fighting piracy and looking after the community.',
-      'ra2web is aiming for a cross-platform real-time strategy engine, and that direction is already visible. If you want to help the community grow, you are welcome.',
+      'ra2web is currently a browser real-time strategy game. Before November 3, 2026, it was the Chinese mirror site of an overseas project. After it brought that project a huge amount of traffic, the partnership ended. That project is the first game engine built entirely on web technology to stand alongside the well-known real-time strategy game Command & Conquer: Red Alert 2, a closed-source project with full intellectual property. People call it “网页红警”, and more than 200,000 players around the world love it.',
+      'Early on, ra2web focused on the experience across every platform. It provided a Chinese translation and, on the Chinese mirror site, added mobile quick panels (a virtual stick, shortcuts, and more) on top of the game API. That greatly improved the experience for players in Greater China, and it continues to fight piracy and clean up the game ecosystem.',
+      'Now that the partnership with the overseas project has ended, ra2web has switched to the 王二火大 game engine and continues to serve players around the world. Campaigns, advanced AI, full mobile support, racing, and more are all included.',
+      'Anyone who wants to help build the community, and help this new one thrive, is sincerely welcome!',
     ],
     tabNews: 'News',
     tabSpecs: 'Requirements',
