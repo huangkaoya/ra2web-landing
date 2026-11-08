@@ -123,6 +123,8 @@ export const en: Messages = {
   },
   support: {
     title: 'Support ra2web',
+    channelNotice:
+      'This section used to include a donation channel that went directly to the former partner. That partnership has ended, and the channel has been removed. To avoid misunderstanding, no donation channel is shown here for now. If you want to donate to the operators behind this site, please arrange a private transfer yourself, or reach out to them on your own.',
     costsTitle: 'Current site costs',
     costsLead: 'There is no commercialization at present. Operating costs are covered entirely by the operator.',
     cdnLabel: 'Tencent Cloud CDN',
@@ -133,6 +135,7 @@ export const en: Messages = {
   },
   donors: {
     loading: 'Loading donations…',
+    // Hidden on the page. These funds were paid directly to the Chronodivide founder and are unrelated to this site.
     title: 'Thank you',
     intro: 'This list is published after a manual check. Thank you to everyone who supports ra2web.',
     empty: 'No public donations yet',

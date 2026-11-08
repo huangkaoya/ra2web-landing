@@ -123,6 +123,8 @@ export const zh: Messages = {
   },
   support: {
     title: '支持红色井界™',
+    channelNotice:
+      '先前这里存在直通原合作方的捐赠渠道，由于合作中止，目前捐赠渠道已经移除。为防止误解，此处暂时不展示任何的捐赠渠道。如果您希望给此站点背后运营者捐款，请自行想办法通过私人渠道转交或者接洽。',
     costsTitle: '当前网站费用',
     costsLead: '目前不存在任何商业化行为，站点运营费用全部由运营方承担。',
     cdnLabel: '腾讯云 CDN',
@@ -133,6 +135,7 @@ export const zh: Messages = {
   },
   donors: {
     loading: '加载捐赠记录…',
+    // 以下文案对应的名单已在页面上隐藏。这些款项都直接打给了 Chronodivide 创始人，与本站点无关。
     title: '感谢捐赠',
     intro: '以下名单经人工核对后公开，感谢每一位支持红色井界™的朋友。',
     empty: '暂无公开捐赠记录',

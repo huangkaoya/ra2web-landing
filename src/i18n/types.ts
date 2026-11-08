@@ -101,6 +101,7 @@ export type Messages = {
   };
   support: {
     title: string;
+    channelNotice: string;
     costsTitle: string;
     costsLead: string;
     cdnLabel: string;
